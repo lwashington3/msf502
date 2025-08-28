@@ -1,0 +1,28 @@
+%! Package = msf502
+%! Author = Len Washington III
+%! Date = 08/28/2025
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{msf502}[2025/08/28 A styling package for the class: MSF 502 - Statistical.]
+
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+	family=msf,
+	prefix=msf@
+}
+
+\DeclareStringOption{title}
+\DeclareStringOption[Len Washington III]{author}
+\DeclareStringOption[\today]{date}
+\DeclareStringOption[{Statistical}]{subject}
+\DeclareStringOption[{MSF 502}]{subjectCode}
+
+\ProcessKeyvalOptions*
+
+\RequirePackage[author=\msf@author,
+	title=\msf@title,
+	date=\msf@date,
+	subject=\msf@subject,
+	code=\msf@subjectCode
+]{iitacademics}
