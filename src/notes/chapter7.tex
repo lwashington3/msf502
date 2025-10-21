@@ -1,0 +1,389 @@
+\documentclass[
+	lecture={7}, % Lecture 6 was the first exam
+	title={Sampling and Sampling Distributions}
+]{msf502notes}
+
+\begin{document}
+
+\setcounter{chapter}{6}
+%<*Chapter-7>
+\chapter{Sampling and Sampling Distributions}\label{ch:sampling-and-sampling-distributions}
+\begin{objectives}
+	\item Differentiate between a population parameter and a sample statistic.
+	\item Explain common sample biases.
+	\item Describe simple random sampling.
+	\item Distinguish between stratified random sampling and cluster sampling.
+	\item Describe the properties of the sampling distribution of the sample mean.
+	\item Explain the importance of the central limit theorem.
+	\item Describe the properties of the sample distribution of the sample proportion.
+	\item Use a finite population correction factor.
+	\item Construct and interpret control charts from quantitative and qualitative data.
+\end{objectives}
+
+%Population parameters such as population mean, population standard deviation, population proportion.
+%For each population parameter, there is a matching sample statistic: sample mean, sample standard deviation, sample proportion.
+%
+%The objective is to learn about the population mean:
+
+\section{Sampling}\label{sec:sampling}
+\lo{Differentiate between a population parameter and a sample statistic.}
+\begin{itemize}
+	\item \definition{Population}{consists of all items of interest in a statistical problem.}
+	\begin{itemize}
+		\item \emph{Population Parameter} is unknown.
+	\end{itemize}
+	\item \definition{Sample}{a subset of the population.}
+	\begin{itemize}
+		\item \emph{Sample statistic} is calculated from sample and used to make inferences about the population.
+	\end{itemize}
+	\item \definition{Bias}{the tendency of a sample statistic to systematically over- or under-estimate a population parameter.}
+\end{itemize}
+
+\lo{Explain common sample biases.}
+\begin{itemize}
+	\item Classic Case of a ``Bad'' Sample: The \textit{Literary Digest} Debacle of 1936
+	\begin{itemize}
+		\item During the 1936 presidential election, the \textit{Literary Digest} predicted a landslide victory of Alf Landon over Franklin D.\ Roosevelt (FDR) \w\ only a 1\% margin or error.
+		\item They were wrong!
+		FDR won in a landslide election.
+		\item The \textit{Literary Digest} had committed \emph{selection bias} by randomly sampling from their own subscriber/membership lists, etc.
+		\item In addition, \w\ only a 24\% response rate, the \textit{Literary Digest} had a great deal of non-response bias.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \definition{Selection bias}{a systematic exclusion of certain groups from consideration for the sample.}
+	\begin{itemize}
+		\item The \textit{Literary Digest} committed selection bias by excluding a large portion of the population (e.g., lower income voters).
+	\end{itemize}
+	\item \definition{Nonresponse bias}{a systematic difference in preferences between respondents and non-respondents to a survey or a poll.}
+	\begin{itemize}
+		\item The \textit{Literary Digest} had only a 24\% response rate.
+		This indicates that only those who cared a great deal about the election took the time to respond to the survey.
+		These respondents may be atypical of the population as a whole.
+	\end{itemize}
+\end{itemize}
+
+\lo{Describe simple random sampling.}
+\subsection{Sampling Methods}\label{subsec:sampling-methods}
+\begin{itemize}
+	\item Simple random sample is a sample of $n$ observations which have the sample probability of being selected from the population as any other sample of $n$ observations.
+	\begin{itemize}
+		\item Most statistical methods presume simple random samples.
+		\item However, in some situations, other sampling methods have an advantage over simple random samples.
+	\end{itemize}
+\end{itemize}
+
+\lo{Distinguish between stratified random sampling and cluster sampling.}
+\subsection{Stratified Random Sampling}\label{subsec:stratified-random-sampling}
+\begin{itemize}
+	\item Divide the population into mutually exclusive and collectively exhaustive groups, called \emph{strata}.
+	\item Randomly select observations from each stratum, which are proportional to the stratum's size.
+	\item Advantages:
+	\begin{itemize}
+		\item Guarantees that each population's subdivision is represented in the sample.
+		\item Parameter estimates have greater precision than those estimated from simple random sampling.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Cluster Sampling}\label{subsec:cluster-sampling}
+\begin{itemize}
+	\item Divide population into mutually exclusive and collectively exhaustive groups, called clusters.
+	\item Random select clusters.
+	\item Sample every observation in those randomly selected clusters.
+	\item Advantages and disadvantages:
+	\begin{itemize}
+		\item Less expensive than other sampling methods.
+		\item Less precision than simple random sampling or stratified sapling.
+		\item Useful when clusters occur naturally in the population.
+	\end{itemize}
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\caption{Stratified vs.\ Cluster Sampling}
+	\label{tab:stratified-vs-cluster-sampling}
+	\begin{tabular}{|p{0.475\textwidth}|p{0.475\textwidth}|}
+		\hline
+		\textbf{Stratified Sampling} & \textbf{Cluster Sampling}\\
+		\hline
+		Sample consists of elements from each group. & Sample consists of elements from the selected groups.\\
+		\hline
+		Preferred when the objective is to increase precision. & Preferred when the objective is to reduce costs.\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{The Sampling Distribution of the Means}\label{sec:the-sampling-distribution-of-the-means}
+\lo{Describe the properties of the sampling distribution of the same mean.}
+\begin{itemize}
+	\item Population is described by parameters.
+	\begin{itemize}
+		\item A \textit{parameter} is a constant, whose value may be unknown.
+		\item Only one population.
+	\end{itemize}
+	\item Sample is described by statistics.
+	\begin{itemize}
+		\item A \emph{statistic} is a random variable whose value depends on the chosen random sample.
+		\item Statistics are used to make \emph{inferences} about the population parameters.
+		\item Can draw multiple random samples of size $n$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Estimator}\label{subsec:sampling-distributor-estimator}
+\begin{itemize}
+	\item A statistic that is used to estimate a population parameter.
+	\item For example, $\bar{X}$, the mean of the sample, is an estimate of $\mu$, the mean of the population.
+\end{itemize}
+
+\subsection{Estimate}\label{subsec:sampling-distributor-estimate}
+\begin{itemize}
+	\item A particular value of the estimator.
+	\item For example, the mean of the sample $\bar{x}$ is an estimate of $\mu$, the mean of the population.
+\end{itemize}
+
+\subsection{Sampling Distribution of the Mean $\bar{x}$}\label{subsec:sampling-distribution-of-the-mean-x}
+\begin{itemize}
+	\item Each random sample size $n$ drawn from the population provides an estimate of $\mu$--the sample mean $\bar{x}$.
+	\item Drawing many samples of size $n$ results in many different sample means, one for each sample.
+	\item The sampling distribution of the mean is the frequency or probability distribution of these sample means.
+\end{itemize}
+
+\subsection[E.V. and S.D. of the Sample Mean]{The Expected Value and Standard Deviation of the Sample Mean}\label{subsec:the-expected-value-and-standard-deviation-of-the-sample-mean}
+\begin{itemize}
+	\item The expected value of $X$,
+	\begin{equation}
+		E(X) = \mu
+		\label{eq:expected-value-random-variable}
+	\end{equation}
+	\item The expected value of the mean,
+	\begin{equation}
+		E(\bar{X}) = E(X) = \mu
+		\label{eq:expected-value-sample-mean}
+	\end{equation}
+	\item Variance of $X$
+	\begin{equation}
+		\text{Var}(X) = \sigma^{2} = \sum \frac{(X_{i} - \bar{X})^{2}}{n - 1}
+		\label{eq:variance-random-variable}
+	\end{equation}
+	\item Standard Deviation
+	\begin{itemize}
+		\item of $X$
+		\begin{equation}
+			SD(X) = \sqrt{\sigma^{2}} = \sigma
+			\label{eq:random-variable-standard-deviation}
+		\end{equation}
+		\item of $\bar{X}$
+		\begin{equation}
+			SD(\bar{X}) = \frac{\sigma}{\sqrt{n}}
+			\label{eq:standard-error-of-the-mean}
+		\end{equation}
+		where $n$ is the sample size.
+		Also known as the \emph{standard error of the mean}.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Sampling from a Normal Distribution}\label{subsec:sampling-from-a-normal-distribution}
+\begin{itemize}
+	\item For any sample size $n$, the sampling distribution of $\bar{X}$ is \emph{normal} if the population $X$ from which the sample is drawn is normally distributed.
+	\item If $X$ is normal, then we can transform it into the \emph{standard normal random variable} as:
+	\begin{itemize}
+		\item For a sampling distribution:
+		\begin{equation}
+			\begin{aligned}
+				Z &= \frac{\bar{X} - \hyperref[eq:expected-value-random-variable]{E(\bar{X})}}{\hyperref[eq:standard-error-of-the-mean]{\text{SD}(\bar{X})}}\\
+				&= \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}
+			\end{aligned}
+			\label{eq:normal-sampling-sample-distribution}
+		\end{equation}
+		\item For a distribution of the values of $X$.
+		\begin{equation}
+			\begin{aligned}
+				Z &= \frac{X - E(X)}{\text{SD}(X)}\\
+				&= \frac{X - \mu}{\sigma}
+			\end{aligned}
+			\label{eq:normal-sampling-distribution}
+		\end{equation}
+	\end{itemize}
+\end{itemize}
+
+\subsection{The Central Limit Theorem}\label{subsec:the-central-limit-theorem}
+\lo{Explain the importance of the central limit theorem.}
+\begin{itemize}
+	\item For any population $X$ \w\ expected value $\mu$ and standard deviation $\sigma$, the sampling distribution of $\bar{X}$ will be approximately normal if the sample size $n$ is sufficiently large.
+	\item As a general guideline, the normal distribution approximation is justified when $n \ge 30$.
+	\item As before, if $\bar{X}$ is approximately normal, then we can transform it using~\eqref{eq:normal-sampling-sample-distribution}.
+\end{itemize}
+
+\section[Sampling Distribution of the Sample Proportion]{The Sampling Distribution of the Sample Proportion}\label{sec:the-sampling-distribution-of-the-sample-proportion}
+\lo{Describe the properties of the sample distribution of the sample proportion.}
+\begin{itemize}
+	\item \definition{Estimator}{Sample proportion $\bar{P}$ is used to estimate the population parameter $p$.}
+	\item \definition{Estimate}{a particular value of the estimator $\bar{p}$.}
+\end{itemize}
+
+\subsection[EV and SD of the Sample Proportion]{The Expected Value and Standard Deviation of the Sample Proportion}\label{subsec:the-expected-value-and-standard-deviation-of-the-sample-proportion}
+\begin{itemize}
+	\item The expected value of $\bar{P}$ is
+	\begin{equation}
+		E(\bar{P}) = p
+		\label{eq:ev-sample-proportion}
+	\end{equation}
+	\item The standard deviation of $\bar{P}$ is
+	\begin{equation}
+		\text{SD}(\bar{P}) = \sqrt{\frac{p(1-p)}{n}}
+		\label{eq:sd-sample-proportion}
+	\end{equation}
+\end{itemize}
+
+\subsection[C.L.T. for the Sample Proportion]{The Central Limit Theorem for the Sample Proportion}\label{subsec:the-central-limit-theorem-for-the-sample-proportion}
+\begin{itemize}
+	\item For any population proportion $p$, the sampling distribution of $\bar{P}$ is approximately normal if the sample size $n$ is sufficiently large.
+	\item As a general guideline, the normal distribution approximation is justified when $np \geq 5$ and $n(1-p) \geq 5$.
+	\item If $\bar{P}$ is normal, we can transform it into the standard normal random variable as
+	\begin{equation}
+		\begin{aligned}
+			Z &= \frac{\bar{P} - \hyperref[eq:ev-sample-proportion]{E(\bar{P})}}{\hyperref[eq:sd-sample-proportion]{SD(\bar{P})}}\\
+			&= \frac{\bar{P} - p}{\sqrt{\frac{p(1-p)}{n}}}
+		\end{aligned}
+		\label{eq:standard-normal-sample-proportion}
+	\end{equation}
+	\item Therefore, any value $\bar{p}$ on $\bar{P}$ has a corresponding value $z$ on $Z$ given by
+	\begin{equation}
+		z = \frac{\bar{p} - p}{\sqrt{\frac{p(1-p)}{n}}}\\
+		\label{eq:standard-normal-sample-proportion-estimate}
+	\end{equation}
+\end{itemize}
+
+\section{The Finite Population Correction Factor}\label{sec:the-finite-population-correction-factor}
+\lo{Use a finite population correction factor.}
+\begin{itemize}
+	\item Used to reduce the sampling variation of $\bar{X}$.
+	\item The resulting standard deviation is
+	\begin{equation}
+		SD(\bar{X}) = \frac{\sigma}{\sqrt{n}} \left( \sqrt{\frac{N-n}{N-1}} \right)
+		\label{eq:sd-finite-population-correction-factor}
+	\end{equation}
+	\item The transformation of $\bar{x}$ to $Z$ is made accordingly.
+	\item Apparently, only used when $\frac{n}{N} > 5\%$.
+\end{itemize}
+
+\subsection[Finite Population Correction Factor for the Sample Proportion]{The Finite Population Correction Factor for the Sample Proportion}\label{subsec:the-finite-population-correction-factor-for-the-sample-proportion}
+\begin{itemize}
+	\item Used to reduce the sampling variation of the sample proportion $\bar{P}$.
+	\item The resulting standard deviation is:
+	\begin{equation}
+		SD(\bar{P}) = \sqrt{\frac{p(1-p)}{n}} \left( \sqrt{\frac{N-n}{N-1}} \right)
+		\label{eq:sd-finite-population-correction-factor-proportion}
+	\end{equation}
+	\item The transformation of $\bar{P}$ to $Z$ is made accordingly.
+\end{itemize}
+
+\section{Statistical Quality Control}\label{sec:statistical-quality-control}
+\lo{Construct and interpret control charts from quantitative and qualitative data.}
+\begin{itemize}
+	\item Involves statistical techniques used to develop and maintain a firm's ability to produce high-quality goods and services.
+	\item Two Approaches for Statistical Quality Control
+	\begin{itemize}
+		\item \hyperref[subsec:acceptance-sampling]{Acceptance Sampling}
+		\item \hyperref[subsec:detection-approach]{Detection Approach}
+	\end{itemize}
+\end{itemize}
+
+\subsection{Acceptance Sampling}\label{subsec:acceptance-sampling}
+\begin{itemize}
+	\item Used at the completion of a production process or service.
+	\item If a particular product does not conform to certain specifications, then it is either discarded or repaired.
+	\item Disadvantages
+	\begin{itemize}
+		\item It is costly to discard or repair a product.
+		\item The detection of all defective products is not guaranteed.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Detection Approach}\label{subsec:detection-approach}
+\begin{itemize}
+	\item Inspection occurs during the production process in order to detect any nonconformance to specifications.
+	\item Goal is to determine whether the production process should be continued or adjusted before producing a large number of defects.
+	\item Types of variation.
+	\begin{itemize}
+		\item \hyperref[subsubsec:chance-variation]{Chance variation}.
+		\item \hyperref[subsubsec:assignable-variation]{Assignable variation}.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Chance Variation (Common Variation)}\label{subsubsec:chance-variation}
+\begin{itemize}
+	\item Caused by a number of randomly occurring events that are part of the production process.
+	\item Not controllable by the individual worker or machine.
+	\item Expected, so not a source of alarm as long as its magnitude is tolerable and the end product meets specifications.
+\end{itemize}
+
+\subsubsection{Assignable variation}\label{subsubsec:assignable-variation}
+\begin{itemize}
+	\item Caused by specific events or factors that can usually be identified and eliminated.
+	\item Identified and corrected or removed.
+\end{itemize}
+
+\subsection{Control Charts}\label{subsec:control-charts}
+\begin{itemize}
+	\item Developed by Walter A. Shewhart.
+	\item A plot of calculated statistics of the production process over time.
+	\item Production process is ``in control'' if the calculated statistics fall in an expected range.
+	\item Production process is ``out of control'' if calculated statistics reveal an undesirable trend.
+	\begin{itemize}
+		\item For quantitative data--$\bar{x}$ chart.
+		\item For qualitative data--$\bar{p}$ chart.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Control Charts for Quantitative Data}\label{subsubsec:control-charts-for-quantitative-data}
+\begin{itemize}
+	\item Centerline--the mean when the process is under control.
+	\item Upper control limit (UCL)--set at $+3\sigma$ from the mean.
+	\begin{equation}
+		\mu + 3\frac{\sigma}{\sqrt{n}}
+		\label{eq:ucl-quantitative}
+	\end{equation}
+	\begin{itemize}
+		\item Points falling above the upper control limit are considered to be \emph{out of control}.
+	\end{itemize}
+	\item Lower control limit (LCL)--set at $-3\sigma$ from the mean.
+	\begin{equation}
+		\mu - 3\frac{\sigma}{\sqrt{n}}
+		\label{eq:lcl-quantitative}
+	\end{equation}
+	\begin{itemize}
+		\item Points falling below the lower control limit are considered to be \emph{out of control}.
+	\end{itemize}
+	\item Process is in control--all points fall \win\ the control limits.
+\end{itemize}
+
+\subsubsection{Control Charts for Qualitative Data}\label{subsubsec:control-charts-for-qualitative-data}
+\begin{itemize}
+	\item $\bar{p}$ chart (fraction defective or percent defective chart).
+	\item Tracks proportion of defects in a production process.
+	\item Relies on central limit theorem for normal approximation for the sampling distribution of the sample proportion.
+	\item Centerline--the mean when the process is under control.
+	\item Upper control limit (UCL)--set at $+3\sigma$ from the mean.
+	\begin{equation}
+		p + 3\sqrt{\frac{p(1-p)}{n}}
+		\label{eq:ucl-qualitative}
+	\end{equation}
+	\begin{itemize}
+		\item Points falling above the upper control limit are considered to be \emph{out of control}.
+	\end{itemize}
+	\item Lower control limit (LCL)--set at $-3\sigma$ from the mean.
+	\begin{equation}
+		p - 3\sqrt{\frac{p(1-p)}{n}}
+		\label{eq:lcl-qualitative}
+	\end{equation}
+	\begin{itemize}
+		\item Points falling below the lower control limit are considered to be \emph{out of control}.
+	\end{itemize}
+	\item Process is out of control--some points fall above the UCL.
+\end{itemize}
+
+%</Chapter-7>
+
+\end{document}

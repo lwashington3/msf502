@@ -1,9 +1,9 @@
 %! Package = msf502
 %! Author = Len Washington III
-%! Date = 08/28/2025
+%! Date = 08/26/2025
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{msf502}[2025/08/28 A styling package for the class: MSF 502 - Statistical.]
+\ProvidesPackage{msf502}[2025/08/26 A styling package for the class: MSF 502 - Statistical Analysis in Financial Markets.]
 
 \RequirePackage{kvoptions}
 
@@ -14,15 +14,19 @@
 
 \DeclareStringOption{title}
 \DeclareStringOption[Len Washington III]{author}
-\DeclareStringOption[\today]{date}
-\DeclareStringOption[{Statistical}]{subject}
+\DeclareStringOption[{\today}]{date}
+\DeclareStringOption[{Statistical Analysis in Financial Markets}]{subject}
 \DeclareStringOption[{MSF 502}]{subjectCode}
 
 \ProcessKeyvalOptions*
 
 \RequirePackage[author=\msf@author,
-	title=\msf@title,
-	date=\msf@date,
-	subject=\msf@subject,
+	title={\msf@title},
+	date={\msf@date},
+	subject={\msf@subject},
 	code=\msf@subjectCode
 ]{iitacademics}
+
+\let\oldemph\emph
+\renewcommand{\emph}{\textbf}
+\newcommand{\definition}[2]{\emph{#1} -- #2}

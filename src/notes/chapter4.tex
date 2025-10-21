@@ -1,0 +1,137 @@
+\documentclass[
+	lecture={4},
+	title={Introduction to Probability}
+]{msf502notes}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{chapter}{3}
+%<*Chapter-4>
+\chapter{Introduction to Probability}\label{ch:introduction-to-probability}
+\section{Sportsware Brands}\label{sec:sportsware-brands}
+\begin{itemize}
+	\item Annabel Gonzalez, chief retail analyst at marketing firm Longmeadow Consultants is tracking the sales of compression-gear produced by Under Armour, Inc., Nike, Inc, and Adidas Group.
+	\item After collecting data from 600 recent purchases, Annabel wants to determine whether age influences brand choice.
+\end{itemize}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \toprule
+        \textbf{} & \multicolumn{3}{|c|}{\textbf{Brand Name}}\\
+        \midrule
+        \textbf{Age Group} & \textbf{Under Armour} & \textbf{Nike} & \textbf{Adidas} \\
+		\midrule
+		\textbf{Under 25 years} & 174 & 132 & 90 \\
+		\midrule
+		\textbf{35 years and older} & 54 & 72 & 78 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Live Example for Chapter 4}
+    \label{tab:chapter-4}
+\end{table}
+
+\section{Fundamental Probability Concepts}\label{sec:fundamental-probability-concepts}
+\begin{itemize}
+	\item A probability is a numerical value that $\dots$
+	\item An experiment
+\end{itemize}
+
+% TODO: Went through a lot of slides very fast
+
+\subsection{Assigning Probabilities}\label{subsec:assigning-probabilities}
+\subsubsection{Subjective Probabilities}\label{subsubsec:subjective-probabilities}
+\begin{itemize}
+	\item Draws on personal and subjective judgment.
+\end{itemize}
+
+\subsubsection{Objective Probabilities}\label{subsubsec:objective-probabilities}
+\begin{itemize}
+	\item Empirical probability: a relative frequency of occurrence
+	\item a priori probability: a logical analysis
+\end{itemize}
+
+\subsection{Probabilities expressed as odds}\label{subsec:probabilities-expressed-as-odds}
+\emph{Percentages} and \emph{odds} are an alternative approach to expressing probabilities include.
+
+\subsection{Converting an odds ratio to a probability}\label{subsec:converting-an-odds-ratio-to-a-probability}
+Given \emph{odds} for event A occurring of ``$a$ to $b$'', the probability of $A$ is:
+\[ \frac{a}{a+b} \]
+
+Given \emph{odds} against event A occurring of ``$a$ to $b$'', the probability of $A$ is:
+\[ \frac{b}{a+b} \]
+
+\subsection{Converting probability to an odds ratio}\label{subsec:converting-probability-to-an-odds-ratio}
+
+\section{Rules of Probability}\label{sec:rules-of-probability}
+\begin{equation}
+	P(A | B) = \frac{P(A \cap B)}{P(B)}
+	\label{eq:conditional-probability}
+\end{equation}
+
+\subsection{Multiplication Rule}\label{subsec:multiplication-rule}
+\begin{equation}
+	P(A \cap B) = P(A | B) \times P(B) = P(B | A) \times P(A)
+	\label{eq:multiplication-rule}
+\end{equation}
+
+\section{Contingency Tables and Probabilities}\label{sec:contingency-tables-and-probabilities}
+\subsection{Contingency Tables}\label{subsec:contingency-tables}
+\begin{itemize}
+	\item A contingency table generally shows frequencies for two qualitative $\dots$
+\end{itemize}
+
+\section{Bayes' Rule}\label{sec:bayes'-rule}
+\begin{equation}
+	\begin{aligned}
+		P(B | A) &= \frac{P(A \cap B)}{P(A \cap B) + P(A \cap B^{c})}\\
+		&= \frac{P(A | B)P(B)}{P(A | B)P(B) + P(A | B^{c})P(B)^{c}}\\
+	\end{aligned}
+	\label{eq:Bayes-Theorem}
+\end{equation}
+
+
+\begin{table}
+    \centering
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{Prior Probability} & \textbf{Conditional Probability} & \textbf{Joint Probability} & \textbf{Posterior Probability} \\
+        \midrule
+        $P(T)$ = 0.99 & & & \\
+		\midrule
+		$P(T^{c})$ = 0.01 & & & \\
+		\midrule
+		$P(T) + P(T^{c})$ = 1 & & & \\
+        \bottomrule
+    \end{tabular}
+    \caption{Bayes' Rule Example}
+    \label{tab:bayes-rule-example}
+\end{table}
+
+We find:
+\[ \begin{aligned}
+	P(T | D) &= \frac{(0.005)(0.99)}{(0.005)(0.99) + (0.95)(0.01)}\\
+	&= \frac{0.00495}{0.00495 + 0.0095}\\
+	&= \frac{0.00495}{0.01445}\\
+	&= 0.342560554\\
+\end{aligned} \]
+
+\section{Counting Rules}\label{sec:counting-rules}
+\begin{equation}
+	_{n}C_{x} = \left( \begin{array}{c}
+		n\\ x
+	\end{array} \right) = \frac{n!}{(n-x)!x!}
+	\label{eq:combination-rule}
+\end{equation}
+
+\begin{equation}
+	_{n}P_{x} = \dots
+	\label{eq:permutation-rule}
+\end{equation}
+%</Chapter-4>
+
+
+\end{document}

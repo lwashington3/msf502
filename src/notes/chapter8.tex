@@ -1,0 +1,229 @@
+\documentclass[
+	lecture={8},
+	title={Estimation}
+]{msf502notes}
+
+\begin{document}
+
+%<*Chapter-8>
+\chapter{Estimation}\label{ch:estimation}
+
+\begin{objectives}
+	\item Discuss point estimators and their desirable properties.
+	\item Explain an interval estimator.
+	\item Calculate a confidence interval for the population mean when the population standard deviation is known.
+	\item Describe the factors that influence the width of a confidence interval.
+	\item \textbf{Discuss features of the $t$ distribution.}
+	\item \textbf{Calculate a confidence interval for the population mean when the population standard deviation is not known.}
+	\item \textbf{Calculate a confidence interval for the population proportion.}
+	\item \textbf{Select a sample size to estimate the population mean and the population proportion.}
+\end{objectives}
+
+\section{Point Estimators and Their Properties}\label{sec:point-estimators-and-their-properties}
+\lo{Discuss point estimators and their desirable properties.}
+\subsection{Point Estimator}\label{subsec:point-estimator}
+\begin{itemize}
+	\item A function of the random sample used to make inferences about the value of an unknown population parameter.
+	\item For example, $\bar{X}$ is a point estimator for $\mu$ and $\bar{P}$ is a point estimator for $p$.
+\end{itemize}
+
+\subsection{Point Estimate}\label{subsec:point-estimate}
+\begin{itemize}
+	\item The value of the point estimator derived from a given sample.
+	\item For example, $\bar{x}=96.5$ is a point estimate of the mpg for all ultra-green cars.
+\end{itemize}
+
+\subsection{Properties of Point Estimators}\label{subsec:properties-of-point-estimators}
+\begin{itemize}
+	\item \definition{Unbiased}{an estimator is unbiased if its expected value equals the unknown population parameter being estimated.}
+	\item \definition{Efficient}{an unbiased estimator is efficient if its standard error is lower than that of other unbiased estimators.}
+	\item \definition{Consistent}{an estimator is consistent if it approaches the unknown population parameter being estimated as the sample size grows larger.}
+\end{itemize}
+
+\section[Confidence Interval of the Population Mean]{Confidence Interval of the Population Mean When $\sigma$ Is Known}\label{sec:confidence-interval-of-the-population-mean-when-sigma-is-known}
+\lo{Explain an interval estimator.}
+\begin{itemize}
+	\item \definition{Confidence Interval}{provides a range of values that, \w\ a certain level of confidence, contains the population parameter of interest.}
+	\begin{itemize}
+		\item Also referred to as an \emph{interval estimate}.
+	\end{itemize}
+	\item Construct a confidence interval as: Point estimate $\pm$ Margin of error.
+	\begin{itemize}
+		\item \emph{Margin of error} accounts for the variability of the estimator and the desired confidence level of the interval.
+	\end{itemize}
+\end{itemize}
+
+\subsection[Constructing a Confidence Interval]{Constructing a Confidence Interval for $\mu$ When $\sigma$ is Known}\label{subsec:constructing-a-confidence-interval-for-mu-when-sigma-is-known}
+\lo{Calculate a confidence interval for the population mean when the population standard deviation is known.}
+\begin{itemize}
+	\item Consider a standard normal random variable:
+	\[ P(-1.96 \leq Z \leq 1.96) = 0.95 \]
+	\item \Bc\ of~\eqref{eq:normal-sampling-sample-distribution}, we get:
+	\[ P\left(-1.96 \leq \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \leq 1.96 \right) = 0.95 \]
+	\item Which, after algebraically manipulating, is equal to:
+	\begin{equation}
+		P\left(\mu - 1.96\frac{\sigma}{\sqrt{n}} \leq \bar{X} \leq \mu + 1.96\frac{\sigma}{\sqrt{n}} \right) = 0.95
+		\label{eq:confidence-interval-step-3}
+	\end{equation}
+	\item Note that~\eqref{eq:confidence-interval-step-3} implies there is a 95\% probability that the sample mean $\bar{X}$ will fall \win\ the interval $\mu \pm 1.96\frac{\sigma}{\sqrt{n}}$.
+	\begin{itemize}
+		\item Thus, if samples of size $n$ are drawn repeatedly from a given population, 95\% of the computed sample means, \_\_\_, will fall \win\ the interval and the remaining 5\% will fall outside the interval.  % TODO: Figure out what the blank was supposed to be
+	\end{itemize}
+	\item Since we do not know $\mu$, we cannot determine if a particular $\bar{x}$ falls \win\ the interval of not.
+	\begin{itemize}
+		\item However, we do know that $\bar{X}$ will fall \win\ the interval $\mu \pm 1.96\frac{\sigma}{\sqrt{n}}$ iff $\mu$ falls \win\ the interval $\bar{x} \pm 1.96\frac{\sigma}{\sqrt{n}}$.
+	\end{itemize}
+	\item This will happen 95\% of the time given the interval construction.
+	Thus, this is a 95\% confidence interval for the population mean.
+	\item Level of significance (i.e., probability of error) $= \alpha$.
+	\item Confidence coefficient $= 1 - \alpha \Rightarrow \alpha = 1 - $ confidence coefficient.
+	\item A $100(1-\alpha)\%$ confidence interval of the population mean $\mu$ when the standard deviation $\sigma$ is known is computed as
+	\begin{equation}
+		\bar{x} \pm z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}
+		\label{eq:confidence-interval-range}
+	\end{equation}
+	or equivalently
+	\begin{equation}
+		\left[ \bar{x} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right]
+		\label{eq:confidence-interval-bounds}
+	\end{equation}
+	\item $z_{\frac{\alpha}{2}}$ is the $z$-value associated \w\ the probability of $\frac{\alpha}{2}$ being in the upper-tail.
+	\item Confidence Intervals:
+	\begin{itemize}
+		\item 90\%, $\alpha = 0.10$, $\frac{\alpha}{2} = 0.05$, $z_{0.05} = 1.645$.
+		\item 95\%, $\alpha = 0.05$, $\frac{\alpha}{2} = 0.025$, $z_{0.025} = 1.96$.
+		\item 99\%, $\alpha = 0.01$, $\frac{\alpha}{2} = 0.005$, $z_{0.005} = 2.575$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Interpreting a Confidence Interval}\label{subsec:interpreting-a-confidence-interval}
+\begin{itemize}
+	\item Interpreting a confidence interval requires care.
+	\item Incorrect: the probability that $\mu$ falls in the interval is 0.95.
+	\item Correct: If numerous samples of size $n$ are drawn from a given population, then 95\% of the intervals formed by the \_\_\_\_ $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{n}$ will contain $\mu$. % FIXME: Get this blank too.
+	\begin{itemize}
+		\item Since there are many possible samples, we will be right 95\% of the time, thus giving us 95\% confidence.
+	\end{itemize}
+\end{itemize}
+
+\subsection{The Width of a Confidence Interval}\label{subsec:the-width-of-a-confidence-interval}
+\lo{Describe the factors that influence the width of a confidence interval.}
+\begin{itemize}
+	\item Margin of Error: $z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}$
+	\item Confidence Interval Width: $2\left( z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right)$
+	\item The width of the confidence interval is influenced by the:
+	\begin{itemize}
+		\item Sample size $n$,
+		\item Standard deviation $\sigma$, and
+		\item Confidence level $100(1 - \alpha)\%$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Summary of the $t_{df}$ Distribution}\label{subsec:summary-of-the-$t_{df}$-distribution}
+\begin{itemize}
+	\item Bell-shaped and symmetric around 0 \w\ asymptotic tails (the tails get closer and closer to the horizontal axis, but never touch it).
+	\item Has slightly broader tails than the $z$ distribution.
+	\item Consists of a family of distributions where the actual shape of each one depends on the $df$.
+	As $df$ increases, the $t_{df}$ distribution becomes similar to the $z$ distribution; it is identical to the $z$ distribution when $df \rightarrow \infty$.
+\end{itemize}
+
+\section[Confidence Interval of the Population Mean]{Confidence Interval of the Population Mean When $\sigma$ Is Unknown}\label{sec:confidence-interval-of-the-population-mean-when-sigma-is-unknown}
+\subsection{The $t$-Distribution}\label{subsec:the-t-distribution}
+\lo{\textbf{Discuss features of the $t$ distribution.}}
+\begin{itemize}
+	\item If repeated samples of size $n$ are taken from a normal population \w\ a finite variance, then the statistic $T$ follows the $t$-distribution \_\_ \w\ $n-1$ degrees of freedom, $\_\_$. % FIXME: And these blanks.
+	\item \definition{Degrees of freedom}{determines the extent of the broadness of the tails of the distribution; the fewer the degrees of freedom, the broader the tails.}
+\end{itemize}
+\begin{equation}
+	T = \frac{\bar{X} - \mu}{\frac{S}{\sqrt{n}}}
+	\label{eq:t-distribution}
+\end{equation}
+
+\subsection{Constructing a Confidence Interval for $\mu$ When $\sigma$ Is Unknown}\label{subsec:constructing-a-confidence-interval-for-mu-when-sigma-is-unknown}
+\lo{\textbf{Calculate a confidence interval for the population mean when the population standard deviation is not known.}}
+\begin{itemize}
+	\item A $100(1-\alpha)\%$ confidence interval of the population mean $\mu$ when the population standard deviation $\sigma$ is not known is \_\_\_\_
+	\begin{equation}
+		\bar{x} \pm t_{\alpha/2, df} \frac{s}{\sqrt{n}}
+		\label{eq:sample-confidence-interval}
+	\end{equation}
+	or equivalently
+	\begin{equation}
+		\left[ \bar{x} - t_{\alpha/2, df} \frac{s}{\sqrt{n}}, \bar{x} + t_{\alpha/2, df} \frac{s}{\sqrt{n}} \right]
+		\label{eq:sample-confidence-interval-range}
+	\end{equation}
+	where $s$ is the sample standard deviation.
+\end{itemize}
+
+\section{Confidence Interval of the Population Proportion}\label{sec:confidence-interval-of-the-population-proportion}
+\lo{\textbf{Calculate a confidence interval for the population proportion.}}
+\begin{itemize}
+	\item Let the parameter $p$ represent the proportion of successes in the population, where success is defined by a particular output.
+	\begin{itemize}
+		\item $\bat{p}$ is the point estimator of the population proportion $p$.
+	\end{itemize}
+	\item By the central limit theorem, $\bar{P}$ can be approximated by a normal distribution for large samples (i.e., $np \geq 5$ and $n(1 - p) \geq 5$).
+	\item Thus, a $100(1-\alpha)\%$ confidence interval of the population proportion is
+	\begin{equation}
+		\bar{p} \pm z_{\alpha/2} \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}} \text{ or }
+		\left[ \bar{p} - z_{\alpha/2} \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}}, \bar{p} + z_{\alpha/2} \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}} \right]
+		\label{eq:population-proportion-confidence-interval}
+	\end{equation}
+	where $\bar{p}$ is used to estimate the population parameter $p$.
+\end{itemize}
+
+\section{Selecting a Useful Sample Size}\label{sec:selecting-a-useful-sample-size}
+\lo{\textbf{Select a sample size to estimate the population mean and the population proportion.}}
+\begin{itemize}
+	\item \emph{Precision} in interval estimates is implied by a low margin of error.
+	\item The larger $n$ reduces the margin of error for the interval estimates.
+	\item How large should the sample size by for a given margin of error?
+\end{itemize}
+
+\subsection{Selecting $n$ to Estimate $\mu$}\label{subsec:selecting-n-to-estimate-mu}
+\begin{itemize}
+	\item Consider a confidence interval for $\mu$ \w\ a known $\sigma$ and let $D$ denote the desired margin or error.
+	\item Since
+	\begin{equation}
+		D = z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}},
+		\label{eq:desired-margin-of-error}
+	\end{equation}
+	we may rearrange to get
+	\begin{equation}
+		n = \left( \frac{z_{\frac{\alpha}{2}} \sigma}{D} \right)^{2}.
+		\label{eq:size-from-margin-of-error}
+	\end{equation}
+	\item If $\sigma$ is unknown, estimate it with $\hat{\sigma}$.
+	\item For a desired margin of error $D$, the minimum sample size $n$ required to estimate a $100(1-\alpha)\%$ confidence interval of the population mean $\mu$ is
+	\begin{equation}
+		n = \left( \frac{z_{\frac{\alpha}{2}} \hat{\sigma}}{D} \right)^{2}.
+		\label{eq:size-from-estimated-margin-of-error}
+	\end{equation}
+	where $\hat{\sigma}$ is a reasonable estimate of $\sigma$ in the planning stage.
+\end{itemize}
+
+\subsection{Selecting $n$ to Estimate $p$}\label{subsec:selecting-n-to-estimate-p}
+\begin{itemize}
+	\item Consider a confidence interval for $p$ and let $D$ denote the desired margin of error.
+	\item Since
+	\begin{equation}
+		D = z_{\frac{\alpha}{2}} \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}}
+		\label{eq:}
+	\end{equation}
+	(where $\bar{p}$ is the sample proportion),
+	we may rearrange to get
+	\begin{equation}
+		n = \left( \frac{z_{\alpha/2}}{D} \right)^{2} \bar{p}(1 - \bar{p})
+		\label{eq:}
+	\end{equation}
+	\item Since $\bar{p}$ comes from a sample, we must use a reasonable estimate of $p$, that is, $\hat{p}$.
+	\item For a desired margin of error $D$, the minimum sample size $n$ required to estimate a $100(1 - \alpha)\%$ confidence interval of the population proportion $p$ is
+	\begin{equation}
+		n = \left( \frac{z_{\alpha/2}}{D} \right)^{2} p(1 - p)
+		\label{eq:}
+	\end{equation}
+	where $\hat{p}$ is a reasonable estimate of $p$ in the planning stage.
+\end{itemize}
+%</Chapter-8>
+
+\end{document}

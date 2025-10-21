@@ -1,0 +1,618 @@
+\documentclass[
+	lecture={5},
+	title={Discrete Random Variables}
+]{msf502notes}
+
+\begin{document}
+
+%<*Chapter-5>
+\chapter{Discrete Random Variables}\label{ch:discrete-random-variables}
+\begin{objectives}
+	\item Distinguish between discrete and continuous random variables.
+	\item Describe the probability distribution of a discrete random variable.
+	\item Calculate and interpret summary measures for a discrete random variable.
+	\item Differentiate among risk neutral, risk averse, and risk loving consumers.
+	\item Compute summary measures to evaluate portfolio returns.
+	\item Describe the binomial distribution and compute relevant probabilities.
+	\item Describe the Poisson distribution and compute relevant probabilities.
+\end{objectives}
+
+\section{Random Variables and Discrete Probability Distributions}\label{sec:random-variables-and-discrete-probability-distributions}
+\lo{Distinguish between discrete and continuous random variables.}
+\begin{itemize}
+	\item Random Variable
+	\begin{itemize}
+		\item A function that assigns numerical values to the outcomes of a random experiment.
+		\item Denoted by uppercase letters (e.g., $X$)
+	\end{itemize}
+	\item Values of the random variable are denoted by corresponding lowercase letters.
+	\begin{itemize}
+		\item Corresponding values of the random variable: $x_{1}, x_{2}, x_{3}, \dots$
+	\end{itemize}
+	\item Random variables may be classified as:
+	\begin{description}
+		\item[Discrete] The random variable assumes a countable number of distinct values.
+		\item[Continuous] The random variable is characterized by (infinitely) uncountable values \win\ any interval.
+	\end{description}
+	\item Consider an experiment in which two shirts are selected from the production line and each can be defective (D) or non-defective (N).
+	\begin{itemize}
+		\item Here is the sample space:
+		\item The random variable $X$ is the number of defective shirts.
+		\item The possible number of defective shirts is the set $\{0, 1, 2\}$.
+	\end{itemize}
+	\item Since these are the only possible outcomes, this is a discrete random variable.
+\end{itemize}
+
+\lo{Describe the probability distribution of a discrete random variable.}
+\begin{itemize}
+	\item Every random variable is associated \w\ a probability distribution that describes the variable completely.
+	\begin{itemize}
+		\item A probability mass function is used to describe discrete random variables.
+		\item A probability density function is used to describe continuous random variables.
+		\item A cumulative distribution function may be used to describe both discrete and continuous random variables.
+	\end{itemize}
+	\item The probability mass function of a discrete random variable $X$ is a list of the values of $X$ with the associated probabilities, that is, the list of all possible pairs:
+	\begin{equation}
+		(x, P(X=x))
+		\label{eq:probability-mass-function}
+	\end{equation}
+	\item The cumulative distribution function of $X$ is defined as
+	\begin{equation}
+		P(X \leq x)
+		\label{eq:discrete-cumulative-distribution-function}
+	\end{equation}
+	\item Two key properties of discrete probability distributions:
+	\begin{itemize}
+		\item The probability of each value $x$ is a value between 0 and 1, or equivalently
+		\[ 0 \leq P(X = x) \leq 1 \]
+		\item The sum of the probabilities equals 1.
+		In other words,
+		\[ \sum_{i} P(X = x_{i}) = 1 \]
+		where the sum extends over all values $x_{i}$ of $X$.
+	\end{itemize}
+	\item A discrete probability distribution may be viewed as a table, algebraically, or graphically.
+	\item For example, consider the experiment of rolling a six-sided die.
+	A tabular presentation is:
+	\begin{table}[H]
+		\centering
+		\caption{Tabular representation of rolling a six-sided die.}
+		\label{tab:six-sided-die}
+		\begin{tabular}{*{7}{|c}|}
+			\hline
+			$x$ & 1 & 2 & 3 & 4 & 5 & 6\\
+			\hline
+			$P(X=x)$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$\\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item Each outcome has an associated probability of $\frac{1}{6}$.
+	Thus, the pairs of values and their probabilities form the probability mass function for $X$.
+	\item Another tabular view of a probability distribution is based on the cumulative probability distribution.
+	\begin{itemize}
+		\item For example, consider the experiment of rolling a six-sided die.
+		The cumulative probability distribution is
+		\begin{table}[H]
+			\centering
+			\caption{Tabular cumulative probability distribution of rolling a six-sided die.}
+			\label{tab:six-sided-die-cumulative}
+			\begin{tabular}{*{7}{|c}|}
+				\hline
+				$x$ & 1 & 2 & 3 & 4 & 5 & 6\\
+				\hline
+				$P(X=x)$ & $\frac{1}{6}$ & $\frac{2}{6}$ & $\frac{3}{6}$ & $\frac{4}{6}$ & $\frac{5}{6}$ & $\frac{6}{6}$\\
+				\hline
+			\end{tabular}
+		\end{table}
+	\end{itemize}
+	\item The cumulative probability gives the probability of $X$ being less than or equal to $x$.
+	For example, $P(x \leq 4) = \frac{4}{6} = \frac{2}{3}$.
+	\item A probability distribution may be expressed algebraically.
+	\item For example, for the sid-sided die experiment, the probability distribution of the random variable $X$ is:
+	\[ P(X = x) = \left\{ \begin{array}{ll}
+		\frac{1}{6} & \text{if } x = 1, 2, 3, 4, 5, 6\\
+		0 & \text{otherwise.}
+	\end{array} \right. \]
+	\item Using this formula, we can find
+	\[ \begin{aligned}
+		P(X = 5) &= \frac{1}{6}\\
+		P(X = 7) &= 0\\
+	\end{aligned} \]
+	\item A probability distribution may be expressed graphically.
+	\begin{itemize}
+		\item The values $x$ of $X$ are placed on the horizontal axis and the associated probabilities on the vertical axis.
+		\item A line is drawn such that its height is associated \w\ the probability of $x$.
+		\item $\dots$
+		\item This is a uniform distribution since the bar heights are all the same.
+	\end{itemize}
+\end{itemize}
+
+\section{Expected Value, Variance, and Standard Deviation}\label{sec:expected-value-variance-and-standard-deviation}
+\lo{Calculate and interpret summary measures for a discrete random variable.}
+\begin{itemize}
+	\item Summary measures for a random variable include the
+	\begin{itemize}
+		\item Mean (Expected Value)
+		\item Variance
+		\item Standard Deviation
+	\end{itemize}
+\end{itemize}
+\subsection{Expected Value}\label{subsec:discrete-expected-value}
+\[ \begin{aligned}
+	\text{Expected Value} &\Leftrightarrow \text{Population Mean}\\
+	E(X) &\Leftrightarrow \mu\\
+\end{aligned} \]
+\begin{itemize}
+	\item $E(X)$ is the long-run average value of the random variable over infinitely many independent repetitions of an experiment.
+	\item For a discrete random variable $X$ \w\ values $x_{1}, x_{2}, x_{3}, \dots$ that occur with probabilities $P(X = x_{i})$, the expected value of $X$ is
+	\begin{equation}
+		\begin{aligned}
+			E(X) &= \mu\\
+			&= \sum_{i} x_{i} \times P(X = x_{i})
+		\end{aligned}
+		\label{eq:discrete-expected-value}
+	\end{equation}
+\end{itemize}
+
+\subsection{Variance and Standard Deviation}\label{subsec:variance-and-standard-deviation}
+\begin{itemize}
+	\item For a discrete random variable $X$ \w\ values $x_{1}, x_{2}, x_{3}, \dots$ that occur \w\ probabilities $P(X = x)$,
+	\begin{equation}
+		\begin{aligned}
+			\text{Var}(X) = \sigma^{2} &= \sum_{i} \left( x_{i} - \mu \right)^{2} P(X = x_{i})\\
+			&= \sum_{i} x_{i}^{2} P(X = x_{i}) - \mu_{2}\\
+		\end{aligned}
+		\label{eq:discrete-variance}
+	\end{equation}
+	\item The standard deviation is the square root of the variance.
+	\begin{equation}
+		\text{SD}(X) = \sigma = \sqrt{\sigma^{2}}
+		\label{eq:discrete-standard-deviation}
+	\end{equation}
+\end{itemize}
+
+\subsection{Risk Neutrality and Risk Aversion}\label{subsec:risk-neutrality-and-risk-aversion}
+\lo{Differentiate among risk neutral, risk averse, and risk loving consumers.}
+\begin{itemize}
+	\item Risk average consumers:
+	\begin{itemize}
+		\item Expect a reward for taking a risk.
+		\item May decline a risky prospect even if it offers a positive expected gain.
+	\end{itemize}
+	\item Risk neutral consumers:
+	\begin{itemize}
+		\item Completely ignore risk.
+		\item Always accept a prospect that offers a positive expected gain.
+	\end{itemize}
+	\item Risk loving consumers:
+	\begin{itemize}
+		\item May accept a risky prospect even if the expected gain is negative.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Application of Expected Value to Risk}\label{subsec:application-of-expected-value-to-risk}
+\begin{itemize}
+	\item Suppose you have a choice of receiving \$1,000 in cash or receiving a beautiful painting from your grandmother.
+	\item The actual value of the painting is uncertain.
+	Here is a probability distribution of the possible worth of the painting.
+	What should you do?
+	\begin{table}[H]
+		\centering
+		\caption{Painting Value Probabilities}
+		\label{tab:painting-expected-value}
+		\begin{tabular}{|c|c|}
+			\hline
+			$x$ & $P(X = x)$\\
+			\hline
+			\$2,000 & 0.20\\
+			\hline
+			\$1,000 & 0.50\\
+			\hline
+			\$500 & 0.30\\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{itemize}
+
+\section{Portfolio Returns}\label{sec:portfolio-returns}
+\lo{Compute summary measures to evaluate a portfolio's return.}
+\begin{itemize}
+	\item Investment opportunities often use both:
+	\begin{itemize}
+		\item Expected return as a measure of reward.
+		\item Variance or standard deviation of return as a measure of risk.
+	\end{itemize}
+	\item Portfolio is defined as a collection of assets such as stocks and bonds.
+	\begin{itemize}
+		\item Let $X$ and $Y$ two random variables of interest, denoting, say, the returns of two assets.
+		\item Since an investor may have invested in both assets, we would like to evaluate the portfolio return formed by a linear combination of $X$ and $Y$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Properties of random variables useful in evaluating portfolio returns}\label{subsec:properties-of-random-variables-useful-in-evaluating-portfolio-returns}
+\begin{itemize}
+	\item Given two random variables $X$ and $Y$,
+	\begin{itemize}
+		\item The expected value of $X$ and $Y$ is
+		\begin{equation}
+			E(X+Y) = E(X) + E(Y)
+			\label{eq:random-variables-expected-value}
+		\end{equation}
+		\item The variance of $X$ and $Y$ is
+		\begin{equation}
+			\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X, Y)
+			\label{eq:random-variables-variance}
+		\end{equation}
+		where $\text{Cov}(X, Y)$ is the covariance between $X$ and $Y$.
+		\item For constants $a$, $b$, the formulas extend to
+		\[ \begin{aligned}
+			E(aX + bY) &= aE(X) + bE(Y)\\
+			\text{Var}(aX + bY) &= a^{2}\text{Var}(X) + b^{2}\text{Var}(Y) + 2ab\text{Cov}(X, Y)
+		\end{aligned} \]
+	\end{itemize}
+\end{itemize}
+
+\subsection{Expected return, variance, and standard deviation of portfolio returns}\label{subsec:expected-return-variance-and-standard-deviation-of-portfolio-returns}
+\begin{itemize}
+	\item Given a portfolio \w\ two assets, Asset $A$ and Asset $B$, the expected return of the portfolio $E(R_{p})$ is computed as:
+	\begin{equation}
+		E(R_{p}) = w_{A}E(R_{A}) + w_{B}E(R_{B})
+		\label{eq:portfolio-expected-return}
+	\end{equation}
+	where $w_{A}$ and $w_{B}$ are the portfolio weights, $w_{A} + w_{B} = 1$, and $E(R_{A})$ and $E(R_{B})$ are the expected returns on assets $A$ and $B$, respectively.
+	\item Using the covariance or the correlation coefficient of the two returns, the portfolio variance of return is:
+	\begin{equation}
+		\text{Var}(R_{p}) = w_{A}^{2}\sigma_{A}^{2} + w_{B}^{2}\sigma_{B}^{2} + 2w_{A}w_{B} \rho_{AB} \sigma_{A} \sigma_{B}
+		\label{eq:portfolio-variance-of-return}
+	\end{equation}
+	where $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ are the variances of the returns for Asset $A$ and Asset $B$, respectively,
+	$\sigma_{AB}$ is the covariance between the returns for Assets A and B,
+	and $\rho_{AB}$ is the correlation coefficient between the returns for Asset $A$ and Asset $B$.
+	\begin{equation}
+		\rho_{AB} = \frac{\sigma_{AB}}{\sigma_{A}\sigma_{B}}
+		\label{eq:correlation-coefficient}
+	\end{equation}
+\end{itemize}
+
+\section{The Binomial Probability Distribution}\label{sec:the-binomial-probability-distribution}
+\lo{Describe the binomial distribution and compute relevant probabilities.}
+\begin{itemize}
+	\item A binomial random variable is defined as the number of successes achieved in the $n$ trials of a Bernoulli process.
+	\begin{itemize}
+		\item A Bernoulli process consists of a series of $n$ independent and identical trials of an experiment such that on each trial:
+		\begin{itemize}
+			\item There are only two possible outcomes:
+			\begin{description}
+				\item[$p$] probability of a success
+				\item[$1-p=q$] probability of a failure
+			\end{description}
+			\item Each time the trial is repeated, the probabilities of success and failure remain the same.
+		\end{itemize}
+	\end{itemize}
+	\item A binomial random variable $X$ is defined as the number of successes achieved in the $n$ trials of a Bernoulli process.
+	\item A binomial probability distribution shows the probabilities associated \w\ the possible values of the binomial random variable (that is, 0, 1, $\dots$, n).
+	\begin{itemize}
+		\item For a binomial random variable $X$, the probability of $x$ successes in $n$ Bernoulli trials is:
+		\begin{equation}
+			\begin{aligned}
+				P(X = x) &= \left( \begin{array}{c} n \\ x \end{array} \right)p^{x} q^{n-x}\\
+				&= \frac{n!}{(n-x)!x!} p^{x} q^{n-x}
+			\end{aligned}
+			\label{eq:binomial-probability-distribution}
+		\end{equation}
+		for $x = 0, 1, 2, \dots, n$.
+	\end{itemize}
+	\item For a binomial distribution:
+	\begin{itemize}
+		\item The expected value $E(X)$ is:
+		\begin{equation}
+			E(X) = \mu = np
+			\label{eq:binomial-expected-value}
+		\end{equation}
+		\item The variance Var$(X)$ is:
+		\begin{equation}
+			\text{Var}(X) = \sigma^{2} = npq
+			\label{eq:binomial-variance}
+		\end{equation}
+		\item The standard deviation SD$(X)$ is:
+		\begin{equation}
+			\text{SD}(X) = \sigma = \sqrt{npq}
+			\label{eq:binomial-standard-deviation}
+		\end{equation}
+	\end{itemize}
+\end{itemize}
+
+\section{The Poisson Probability Distribution}\label{sec:the-poisson-probability-distribution}
+\lo{Descrive the Poisson distribution and compute relevant probabilities.}
+\begin{itemize}
+	\item A binomial random variable counts the number of successes in a fixed number of Bernoulli trials.
+	\item In contrast, a Poisson random variable counts the number of successes over a given interval of time or space.
+	\begin{itemize}
+		\item Examples of a Poisson random variable include:
+		\begin{description}
+			\item[\Wrt\ time] the number of cars that cross the Brooklyn Bridge between 9:00 am and 10:00 am on a Monday morning.
+			\item[\Wrt\ space] the number of defects in a 50-year roll of fabric.
+		\end{description}
+	\end{itemize}
+	\item A random experiment satisfies a Poisson process if:
+	\begin{itemize}
+		\item The number of successes \win\ a specified time or space interval equals any integer between 0 and $\infty$.
+		\item The number of successes in non-overlapping intervals are independent.
+		\item The probability that successes occurs in any interval is the same for all intervals of equal size and is proportional to the size of the interval.
+	\end{itemize}
+	\item For a Poisson random variable $X$, the probability of $x$ successes over a given interval of time or space is:
+	\begin{equation}
+		P(X = x) = \frac{e^{-\mu}\mu^{x}}{x!} \text{   for } x = 0, 1, 2, \dots
+		\label{eq:possion}
+	\end{equation}
+	where $\mu$ is the mean number of successes and $e \approx 2.718$ is the base of the natural logarithm.
+	\item For a Poisson distribution:
+	\begin{itemize}
+		\item The expected value $E(X)$ is:
+		\begin{equation}
+			E(X) = \mu
+			\label{eq:poisson-expected-value}
+		\end{equation}
+		\item The variance Var$(X)$ is:
+		\begin{equation}
+			\text{Var}(X) = \sigma^{2} = \mu
+			\label{eq:poisson-variance}
+		\end{equation}
+		\item The standard deviation SD$(X)$ is:
+		\begin{equation}
+			\text{SD}(X) = \sigma = \sqrt{\mu}
+			\label{eq:poisson-standard-deviation}
+		\end{equation}
+	\end{itemize}
+\end{itemize}
+
+\chapter{Continuous Random Variables}\label{ch:continuous-random-variables}
+\begin{objectives}
+	\item Describe a continuous random variable.
+	\item Describe a continuous uniform distribution and calculate associated probabilities.
+	\item Explain the characteristics of the normal distribution.
+	\item Use the standard normal table of the $z$-table.
+	\item \textbf{Calculate and interpret probabilities or a random variable that follows the normal distribution.}
+	\item \textbf{Calculate and interpret probabilities or a random variable that follows the exponential distribution.}
+	\item \textbf{Calculate and interpret probabilities or a random variable that follows the lognormal distribution.}
+\end{objectives}
+
+\section{Continuous Random Variables and the Uniform Probability Distribution}\label{sec:continuous-random-variables-and-the-uniform-probability-distribution}
+\lo{Describe a continuous random variable.}
+\begin{itemize}
+	\item \hyperref[sec:random-variables-and-discrete-probability-distributions]{Remember that random variables may be classified as}
+	\begin{description}
+		\item[Discrete] The random variable assumes a countable number of distinct values.
+		\item[Continuous] The random variable is characterized by (infinitely) uncountable values \win\ any interval.
+	\end{description}
+	\item When computing probabilities for a continuous random variable, keep in mind that $P(X=x) = 0$.
+	\begin{itemize}
+		\item We cannot assign a nonzero probability to each infinitely uncountable value and still have the probabilities sum to one.
+		\item Thus, since $P(X=a)$ and $P(X=b)$ both equal zero, the following holds true for continuous random variables:
+		\[ P(a \leq X \leq b) = P(a < X < b) = P(a \leq X < b) = P(a < X \leq b) \]
+	\end{itemize}
+\end{itemize}
+
+\subsection{Probability Density Function $f(x)$ of a continuous random variable $X$}\label{subsec:continuous-probability-density-function}
+\begin{itemize}
+	\item Describes the relative likelihood that $X$ assumes a value \win\ a general interval (e.g., $P(a \leq X \leq b)$), where
+	\begin{itemize}
+		\item $f(x) > 0$ for all possible values of $X$.
+		\item The area under $f(x)$ over all values of $x$ equals 1.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Cumulative Density Function $F(x)$ of a continuous random variable $X$}\label{subsec:continuous-cumulative-density-function}
+\begin{itemize}
+	\item For any value $x$ of the random variable $X$, the cumulative distribution function $F(x)$ is computes as:
+	\[ F(X) = P(X \leq x) \]
+	\item As a result:
+	\[ P(a \leq X \leq b) = F(b) - F(a) \]
+\end{itemize}
+
+\subsection{The Continuous Uniform Distribution}\label{subsec:the-continuous-uniform-distribution}
+\lo{Describe a continuous uniform distribution and calculate associated probabilities.}
+
+\begin{itemize}
+	\item Describe a random variable that has an equally likely chance of assuming a value \win\ a specified range.
+	\item Probability density function:
+	\begin{equation}
+		f(x) = \left\{ \begin{array}{ll}
+			\frac{1}{b - a} & \text{ for } a \leq x \leq b, \text{ and}\\
+			0 & \text{ for } x < a \text{ or } x > b
+		\end{array} \right.
+		\label{eq:continuous-uniform-pdf}
+	\end{equation}
+	where $a$ and $b$ are the lower and upper limits, respectively.
+	\item The expected value and standard deviation of $X$ are:
+	\begin{equation}
+		E(X) = \mu = \frac{a + b}{2}
+		\label{eq:continuous-uniform-ev}
+	\end{equation}
+	\begin{equation}
+		\begin{aligned}
+			\text{SD}(X) &= \sigma\\
+			&= \sqrt{\frac{(b-a)^{2}}{12}}
+		\end{aligned}
+		\label{eq:continuous-uniform-sd}
+	\end{equation}
+\end{itemize}
+
+\subsection{Graph of the continuous uniform distribution}\label{subsec:graph-of-the-continuous-uniform-distribution}
+\begin{itemize}
+	\item The values of $a$ and $b$ on the horizontal axis represent the lower and upper limits, respectively.
+	\item The height of the distribution does not directly represent a probability.
+	\item It is the area under $f(x)$ that corresponds to probability.
+\end{itemize}
+
+Cumulative function:
+\[ \begin{aligned}
+	P(X > x_{1}) &= \text{base} \times \text{height}\\
+	&= (b - x_{1}) \times \frac{1}{b-a}
+\end{aligned} \]
+
+\section{The Normal Distribution}\label{sec:the-normal-distribution}
+\begin{itemize}
+	\item For a random variable $X$ with mean $\mu$ and variance $\sigma^{2}$:
+	\begin{equation}
+		f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp \left( -\frac{(x - \mu)^{2}}{2\sigma^{2}} \right)
+		\label{eq:normal-distribution}
+	\end{equation}
+\end{itemize}
+
+\subsection{The Normal Distribution}\label{subsec:the-normal-Distribution}
+\lo{Explain the characteristics of the normal distribution.}
+
+\begin{itemize}
+	\item Symmetric
+	\item Bell-shaped
+	\item Closely approximates the probability distribution of a wide range of random variables, such as the
+	\begin{itemize}
+		\item Heights and weights of newborn babies
+		\item Scores on SAT
+		\item Cumulative debt of college graduates
+	\end{itemize}
+	\item Serves as the cornerstone of statistical inference.
+\end{itemize}
+
+\subsection{Characteristics of the Normal Distribution}\label{subsec:characteristics-of-the-normal-distribution}
+\begin{itemize}
+	\item Symmetric about its mean
+	\begin{itemize}
+		\item Mean = Median = Mode
+	\end{itemize}
+	\item Asymptotic--that is, the tail gets closer and closer to the horizontal axis but never touches it.
+	\item The normal distribution is completely described by two parameters: $\mu$ and $\sigma^{2}$.
+	\begin{description}
+		\item[$\mu$] is the population mean which describes the central location of the distribution.
+		\item[$\sigma^{2}$] is the population variance which describes the dispersion of the distribution.
+	\end{description}
+\end{itemize}
+
+\subsection{Probability Density Function of the Normal Distribution}\label{subsec:probability-density-function-of-the-normal-distribution}
+\begin{itemize}
+	\item For a random variable $X$ \w\ mean $\mu$ and variance $\sigma^{2}$:
+	\begin{equation}
+		f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{(x - \mu)^{2}}{2\sigma^{2}} \right)
+		\label{eq:normal-pdf}
+	\end{equation}
+\end{itemize}
+
+\subsection[$Z$-Distribution]{The Standard Normal (Z) Distribution}\label{subsec:the-standard-normal-(z)-distribution}
+\lo{Use the standard normal table of the $z$-table.}
+\begin{itemize}
+	\item A special case of the normal distribution:
+	\begin{itemize}
+		\item Mean $\mu$ is qual to zero ($E(X) = 0$).
+		\item Standard deviation $\sigma$ is equal to 1 (SD$(Z) = 1$).
+	\end{itemize}
+\end{itemize}
+
+\subsection[$Z$-Table]{Standard Normal Table ($Z$-Table)}\label{subsec:z-table)}
+\begin{itemize}
+	\item Gives the cumulative probabilities $P(Z \leq z)$ for positive and negative values of $z$.
+	\item Since the random variable $Z$ is symmetric about its mean of 0,
+	\[ P(Z < 0) = P(Z > 0) = 0.5 \]
+	\item To obtain the $P(Z < z)$, read down the $z$-column first, then across the top.
+\end{itemize}
+
+\subsection{Finding the Probability for a Given $z$-Value}\label{subsec:finding-the-probability-for-a-given-$z$-value}
+\begin{itemize}
+	\item Transform normally distributed random variables into standard normal random variables and use the $z$-table to compute the relevant probabilities.
+	\item The $z$-table provides cumulative probabilities $P(Z \leq z)$ for a given $z$.
+\end{itemize}
+
+\section{Solving Problems \w\ the Normal Distribution}\label{sec:solving-problems-w-the-normal-distribution}
+\lo{Calculate and interpret probabilities or a random variable that follows the normal distribution.}
+
+\subsection{The Normal Transformation}\label{subsec:the-normal-transformation}
+\begin{itemize}
+	\item Any normally distributed random variable $X$ with mean $\mu$ and standard deviation $\sigma$ can be transformed into the standard normal random variable $Z$ as:
+	\begin{equation}
+		Z = \frac{X - \mu}{\sigma} \text{ \w\ corresponding values } z = \frac{x - \mu}{\sigma}
+		\label{eq:normal-transformation}
+	\end{equation}
+	\item As constructed: $E(Z) = 0$ and SD$(Z) = 1$.
+	\item A $z$-value specifies by how many standard deviations the corresponding $x$ value falls above ($z > 0$) or below ($z < 0$) the mean.
+	\begin{itemize}
+		\item A positive $z$ indicates by how many standard deviations the corresponding $x$ lies above $\mu$.
+		\item A zero $z$ indicates that the corresponding $x$ equals $\mu$.
+		\item A negative $z$ indicates by how many standard deviations the corresponding $x$ lies below $\mu$.
+	\end{itemize}
+\end{itemize}
+
+\subsection[Inverse $z$-Transformation]{Use the Inverse Transformation to Compute Probabilities for Given $x$ values}\label{subsec:use-the-inverse-z-transformation}
+\begin{itemize}
+	\item A standard normal variable $Z$ can be transformed to the normally distributed random variable $X$ \w\ mean $\mu$ and standard deviation $\sigma$ as
+	\begin{equation}
+		X = \mu + Z\sigma \text{ \w\ corresponding values } x = \mu + z\sigma
+		\label{eq:z-inverse-transform}
+	\end{equation}
+\end{itemize}
+
+\section{Other Continuous Probability Distributions}\label{sec:other-continuous-probability-distributions}
+\lo{Calculate and interpret probabilities or a random variable that follows the exponential distribution.}
+
+\subsection{Exponential Distribution}\label{subsec:exponential-distribution}
+\begin{itemize}
+	\item A random variable $X$ follows the exponential distribution if its probability density function is:
+	\begin{equation}
+		f(x) = \lambda e^{-\lambda x} \text{ for } x \geq 0
+		\label{eq:exponential-pdf}
+	\end{equation}
+	where $\lambda$ is the rate parameter and $E(X)=\text{SD}(X) = \frac{1}{\lambda}$.
+	\item The cumulative distribution function is:
+	\begin{equation}
+		P(X \leq x) = 1 - e^{-\lambda x}
+		\label{eq:exponential-cumulative-distribution}
+	\end{equation}
+\end{itemize}
+
+%The exponential distribution is based entirely on one parameter $\lambda > 0$, as illustrated below.
+
+\subsection[Lognormal Distribution]{The Lognormal Distribution}\label{subsec:lognormal-distribution}
+\lo{Calculate and interpret probabilities or a random variable that follows the lognormal distribution.}
+
+\begin{itemize}
+	\item Defined for a positive random variable, the lognormal distribution is positively skewed.
+	\item Useful for describing variables such as
+	\begin{itemize}
+		\item Income
+		\item Real estate values
+		\item Asset prices
+	\end{itemize}
+	\item Failure rate may increase or decrease over time.
+	\item Let $X$ be a normally distributed random variable \w\ mean $\mu$ and standard deviation $\sigma$.
+	The random variable $Y = e^{X}$ follows the lognormal distribution \w\ a probability density function as
+	\begin{equation}
+		f(y) = \frac{1}{y\sigma\sqrt{2\pi}} \exp\left( -\frac{\left( \ln(y) - \mu \right)^{2}}{2\sigma^{2}} \right) \text{ for } y > 0
+		\label{eq:lognormal-pdf}
+	\end{equation}
+	\item The lognormal distribution is clearly positively skewed for $\sigma > 1$.
+	For $\sigma < 1$, the lognormal distribution somewhat resembles to normal distribution.
+\end{itemize}
+
+\subsection[EV and SD of Lognormal and Normal Distributions]{Expected values and standard deviations of the lognormal and normal distributions}\label{subsec:expected-values-and-standard-deviations-of-the-lognormal-and-normal-distributions}
+\begin{itemize}
+	\item Let $X$ be a normal random variable \w\ mean $\mu$ and standard deviation $\sigma$ and let $Y = e^{X}$ by the corresponding lognormal variable.
+	The mean $\mu_{y}$ and standard deviation $\sigma_{Y}$ or $Y$ are derived as:
+	\begin{equation}
+		\mu_{Y} = \exp\left( \frac{2\mu + \sigma^{2}}{2} \right)
+		\label{eq:lognormal-mean}
+	\end{equation}
+	\begin{equation}
+		\sigma_{Y} = \sqrt{ \left( \exp(\sigma^{2}) - 1 \right) \exp\left( 2\mu + \sigma^{2} \right) }
+		\label{eq:lognormal-standard-deviation}
+	\end{equation}
+	\item Equivalently, the mean and standard deviation of the normal variable $X = \ln(Y)$ are derived as
+	\begin{equation}
+		\mu = \ln\left( \frac{\mu_{Y}^{2}}{\sqrt{\mu_{Y}^{2} + \sigma_{Y}^{2}}} \right)
+		\label{eq:normal-mean}
+	\end{equation}
+	\begin{equation}
+		\sigma = \sqrt{\ln\left( 1 + \frac{\sigma_{Y}^{2}}{\mu_{Y}^{2}} \right)}
+		\label{eq:normal-standard-deviation}
+	\end{equation}
+\end{itemize}
+%</Chapter-5>
+
+\end{document}

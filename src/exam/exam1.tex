@@ -1,0 +1,19 @@
+%! Author = Len Washington III
+%! Date = 10/20/25
+
+% Preamble
+\documentclass[title={Exam 1 Notes}]{msf502notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+\let\oldbegindocument\document
+
+\foreach \chap in {1,...,6}{%
+	\ExecuteMetaData[../notes/chapter\chap]{Chapter-\chap}
+}
+\let\document\oldbegindocument
+
+\end{document}

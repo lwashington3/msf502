@@ -1,0 +1,278 @@
+\documentclass[
+	lecture={9},
+	title={Hypothesis Testing}
+]{msf502notes}
+
+\begin{document}
+
+\setcounter{chapter}{8}
+%<*Chapter-9>
+\chapter{Hypothesis Testing}\label{ch:hypothesis-testing}
+\begin{objectives}
+	\item Define the null hypothesis and the alternative hypothesis.
+	\item Distinguish between Type I and Type II errors.
+	\item Explain the steps of a hypothesis test using the $p$-value approach.
+	\item Explain the steps of a hypothesis test using the critical value approach.
+	\item Differentiate between the test statistics for the population mean.
+	\item Specify the test statistic for the population proportion.
+\end{objectives}
+
+\section{Point Estimators and Their Properties}\label{sec:point-estimators-and-their-properties}
+\lo{Define the null hypothesis and the alternative hypothesis.}
+\begin{itemize}
+	\item Hypothesis tests resolve conflicts between two competing opinions (hypotheses).
+	\item In a hypothesis test, define
+	\begin{description}
+		\item[$H_{0}$] the null hypothesis, the presumed default state of nature or status quo.
+		\item[$H_{A}$] the alternative hypothesis, a contradiction of the default state of nature or status quo.
+	\end{description}
+	\item In statistics, we use sample information to make inferences regarding the unknown population parameters of interest.
+	\item We conduct hypothesis tests to determine if sample evidence contradicts $H_{0}$.
+	\item On the basis of sample information, we either
+	\begin{itemize}
+		\item ``Reject the null hypothesis''
+		\begin{itemize}
+			\item Sample evidence \emph{is} inconsistent \w\ $H_{0}$.
+		\end{itemize}
+		\item ``Do not reject the null hypothesis''
+		\begin{itemize}
+			\item Sample evidence \emph{is not} inconsistent \w\ $H_{0}$.
+			\item We do not have enough evidence to ``accept'' $H_{0}$.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{Defining the Null Hypothesis and Alternative Hypothesis}\label{subsec:defining-the-null-hypothesis-and-alternative-hypothesis}
+General guidelines:
+\begin{itemize}
+	\item Null hypothesis, $H_{0}$, states the status quo.
+	\item Alternative hypothesis, $H_{A}$, states whatever we wish to establish (i.e., contests the status quo)
+	\item Note that $H_{0}$ always contains the ``equality''.
+\end{itemize}
+
+\subsection{One-Tailed vs Two-Tailed Hypothesis Tests}\label{subsec:one-tailed-vs-two-tailed-hypothesis-tests}
+\subsubsection{Two-Tailed Test}\label{subsubsec:two-tailed-test}
+\begin{itemize}
+	\item Reject $H_{0}$ on either side of the hypothesized value of the population parameter.
+	\item For example:
+	\begin{itemize}
+		\item $H_{0}$: $\mu = \mu_{0}$ versus $H_{A}$: $\mu \neq \mu_{0}$
+		\item $H_{0}$: $p = p_{0}$ versus $H_{A}$: $p \neq p_{0}$
+	\end{itemize}
+	\item The $\neq$ symbol in $H_{A}$ indicates that both tail areas of the distribution will be used to make the decision regarding the rejection of $H_{0}$.
+\end{itemize}
+
+\subsubsection{One-Tailed Test}\label{subsubsec:one-tailed-test}
+\begin{itemize}
+	\item Reject $H_{0}$ only on one side of the hypothesized value of the population parameter.
+	\item For example:
+	\begin{itemize}
+		\item $H_{0}$: $\mu \leq \mu_{0}$ versus $H_{A}$: $\mu > \mu_{0}$ (right-tail test)
+		\item $H_{0}$: $\mu \geq \mu_{0}$ versus $H_{A}$: $\mu < \mu_{0}$ (left-tail test)
+	\end{itemize}
+	\item Note that the inequality in $H_{A}$ determines which tail area will be used to make the decision regarding the rejection of $H_{0}$.
+\end{itemize}
+
+\subsection{Three Steps to Formulate Hypotheses}\label{subsec:three-steps-to-formulate-hypotheses}
+\begin{enumerate}
+	\item Identify the relevant population parameter of interest (e.g., $\mu$ or $p$).
+	\item Determine whether it is a one- or a two-tailed test.
+	\item Include some form of the equality sign in $H_{0}$ and use $H_{A}$ to establish a claim.
+\end{enumerate}
+
+\begin{table}[H]
+	\centering
+	\label{tab:hypothesis-formulation}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$H_{0}$ & $H_{A}$ & Test Type\\
+		\hline
+		$=$ & $\neq$ & Two-tail\\
+		\hline
+		$\geq$ & $<$ & One-tail, Left-tail\\
+		\hline
+		$\leq$ & $>$ & One-tail, Right-tail\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Type I and Type II Errors}\label{subsec:type-i-and-type-ii-errors}
+\lo{Distinguish between Type I and Type II errors.}
+\begin{itemize}
+	\item \definition{Type I Error}{Committed when we reject $H_{0}$ when $H_{0}$ is actually true.}
+	\begin{itemize}
+		\item Occurs \w\ probability $\alpha$.
+		$\alpha$ is chosen \emph{a priori}.
+	\end{itemize}
+	\item \definition{Type II Error}{Committed when we do not reject $H_{0}$ when $H_{0}$ is actually false.}
+	\begin{itemize}
+		\item Occurs with probability $\beta$.
+		Power of the test = $1 - \beta$
+	\end{itemize}
+	\item For a given sample size $n$, a decrease in $\alpha$ will increase $\beta$ and vice versa.
+	\item Both $\alpha$ and $\beta$ decreases as $n$ increases.
+\end{itemize}
+\begin{table}[H]
+	\centering
+	\label{tab:type-errors}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Decision} & \textbf{Null hypothesis is true} & \textbf{Null hypothesis is false}\\
+		\hline
+		\textbf{Reject the null hypothesis} & Type I error & Correct decision\\
+		\hline
+		\textbf{Do not reject the null hypothesis} & Correct decision & Type I error\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section[Hypothesis Test of $\mu$ When $\sigma$ Is Known]{Hypothesis Test of the Population Mean When $\sigma$ Is Known}\label{sec:hypothesis-test-of-the-population-mean-when-sigma-is-known}
+\lo{Explain the steps of a hypothesis test using the $p$-value approach.}
+
+\begin{itemize}
+	\item Hypothesis testing enables us to determine whether the sample evidence is inconsistent \w\ what is hypothesized under the null hypothesis ($H_{0}$).
+	\item Basic principle: First assume that $H_{0}$ is true and then determine if sample evidence contradicts this assumption.
+	\item Two approaches to hypothesis testing:
+	\begin{itemize}
+		\item The $p$-value approach.
+		\item The critical value approach.
+	\end{itemize}
+\end{itemize}
+
+\subsection{The $p$-value Approach}\label{subsec:the-p-value-approach}
+\begin{itemize}
+	\item The value of the test statistic for the hypothesis test of the population mean $\mu$ when the population standard deviation $\sigma$ is known is computed as
+	\begin{equation}
+		z = \frac{\bar{x} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}}
+		\label{eq:p-value-approach}
+	\end{equation}
+	where $\mu_{0}$ is the hypothesized mean value.
+	\item $p$-value: the likelihood of obtaining a sample mean that is at least as extreme as the one derived from the given sample, under the assumption that the null hypothesis is true.
+	\item Under the assumption that $\mu = \mu_{0}$, the $p$-value is the likelihood of observing a sample mean that is at least as extreme as the one derived from the given sample.
+	\item The calculation of the $p$-value depends on the \_\_\_\_\_\_. % FIXME: Get this too
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\label{tab:alternative-hypothesis-p-value}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Alternative hypothesis} & \textbf{$p$-value}\\
+		\hline
+		$H_{A}: \mu > \mu_{0}$ & Right-tail probability: $P(Z \geq z)$\\
+		\hline
+		$H_{A}: \mu < \mu_{0}$ & Left-tail probability: $P(Z \leq z)$\\
+		\hline
+		$H_{A}: \mu \neq \mu_{0}$ & Two-tail probability: \[ \begin{aligned}
+			&2P(Z \geq z) \text{ if } z > 0 \text{ or }\\
+			&2P(Z \leq z) \text{ if } z < 0
+		\end{aligned} \]\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{itemize}
+	\item Decision rule: Reject $H_{0}$ if $p$-value $< \alpha$.
+\end{itemize}
+
+\subsection{Four Step Procedure Using the $p$-value Approach}\label{subsec:four-step-procedure-using-the-$p$-value-approach}
+\begin{enumerate}[label=Step \arabic*.]
+	\item Specify the null and the alternative hypotheses.
+	\item Specify the test statistic and compute its value.
+	\item Calculate the $p$-value.
+	\item State the conclusion and interpret the results.
+\end{enumerate}
+
+\lo{Explain the steps of a hypothesis test using the critical value approach.}
+
+\subsection{The Critical Value Approach}\label{subsec:the-critical-value-approach}
+\begin{itemize}
+	\item \definition{Rejection region}{a region of values such that if the test statistic falls into this region, then we reject $H_{0}$.}
+	\begin{itemize}
+		\item The location of this region is determined by $H_{A}$.
+	\end{itemize}
+	\item \definition{Critical value}{a point that separates the rejection region from the nonrejection region.}
+	\item The critical value approach specifies a region such that if the value of the test statistic falls into the region, the null hypothesis is rejected.
+	\item The critical value depends on the alternative.
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\label{tab:alternative-hypothesis-critical-value}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Alternative hypothesis} & \textbf{Critical Value}\\
+		\hline
+		$H_{A}: \mu > \mu_{0}$ & Right-tail critical value is $z_{\alpha}$, where $P(Z \geq z_{\alpha}) = \alpha$\\
+		\hline
+		$H_{A}: \mu < \mu_{0}$ & Left-tail critical value is $-z_{\alpha}$, where $P(Z \leq -z_{\alpha}) = \alpha$\\
+		\hline
+		$H_{A}: \mu \neq \mu_{0}$ & Two-tail critical value $-z_{\alpha/2}$ and $z_{\alpha/2}$, where $P(Z \geq z_{\alpha/2}) = \frac{\alpha}{2}$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{itemize}
+	\item Decision Rule: Reject $H_{0}$ if:
+	\begin{itemize}
+		\item $z > z_{\alpha}$ for a right-tailed test
+		\item $z < -z_{\alpha}$ for a left-tailed test
+		\item $z > z_{\alpha/2}$ or $z < -z_{\alpha/2}$ for a two-tailed test
+	\end{itemize}
+\end{itemize}
+
+\subsection{Four Step Procedure Using the Critical Value Approach}\label{subsec:four-step-procedure-using-the-critical-value-approach}
+\begin{enumerate}[label=Step \arabic*.]
+	\item Specify the null and the alternative hypotheses.
+	\item Specify the test statistic and compute its value.
+	\item Find the critical value \emph{or} values.
+	\item State the conclusion and interpret the results.
+\end{enumerate}
+
+\subsection{Confidence Intervals and Two-Tailed Hypothesis Tests}\label{subsec:confidence-intervals-and-two-tailed-hypothesis-tests}
+\begin{itemize}
+	\item Given the significance level $\alpha$, we can use the sample data to construct a $100(1-\alpha)\%$ confidence interval for the population mean $\mu$.
+	\item Decision Rule
+	\begin{itemize}
+		\item Reject $H_{0}$ if the confidence interval \emph{does not} contain the value of the hypothesized mean $\mu_{0}$.
+		\item Do not reject $H_{0}$ if the confidence interval \emph{does} contain the value of the hypothesized mean $\mu_{0}$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Implementing a Two-Tailed Test Using a Confidence Interval}\label{subsec:implementing-a-two-tailed-test-using-a-confidence-interval}
+\begin{itemize}
+	\item The general specification for a $100(1-\alpha)\%$ confidence interval of the population mean $\mu$ when the population standard deviation $\sigma$ is known as
+	\begin{equation}
+		\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \text{\ \ \ or \ \ \ }
+		\left[ \bar{x} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \right]
+		\label{eq:two-tailed-confidence-interval}
+	\end{equation}
+	\item Decision Rule: Reject $H_{0}$ if $\mu_{0} < \bar{x} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$ or if $\mu_{0} > \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$
+\end{itemize}
+
+\section[Hypothesis Test of $\mu$ When $\sigma$ Is Unknown]{Hypothesis Test of the Population Mean When $\sigma$ Is Unknown}\label{sec:hypothesis-test-of-the-population-mean-when-sigma-is-unknown}
+\subsection{Test Statistic for $\mu$ When $\sigma$ is Unknown}\label{subsec:test-statistic-for-mu-when-sigma-is-unknown}
+\lo{Differentiate between the test statistics for the population mean.}
+\begin{itemize}
+	\item When the population standard deviation $\sigma$ is unknown, the test statistic for testing the population mean $\mu$ is assumed to follow the $t_{df}$ distribution \w\ $(n-1)$ degrees of freedom ($df)$.
+	\item The value of $t_{df}$ is computed as
+	\begin{equation}
+		t_{df} = \frac{\bar{x} - \mu_{0}}{\frac{s}{\sqrt{n}}}
+		\label{eq:test-statistic-no-sigma}
+	\end{equation}
+\end{itemize}
+
+\section{Hypothesis Test of the Population Proportion}\label{sec:hypothesis-test-of-the-population-proportion}
+\lo{Specify the test statistic for the population proportion.}
+\begin{itemize}
+	\item $\bar{P}$ can be approximated by a normal distribution if $np \geq 5$ and $n(1-p) \geq 5$.
+	\item Test statistic for the hypothesis test of the population proportion $p$ is assumed to follow the $z$ distribution:
+	\begin{equation}
+		z = \frac{\bar{p} - p_{0}}{\sqrt{\frac{p_{0}(1 - p_{0})}{n}}}
+		\label{eq:test-statistic-for-p}
+	\end{equation}
+	where $\bar{p} = \frac{x}{n}$ and $p_{0}$ is the hypothesized value of the population proportion.
+\end{itemize}
+%</Chapter-9>
+
+\end{document}

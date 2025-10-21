@@ -1,0 +1,19 @@
+%! Author = Len Washington III
+%! Date = 10/20/25
+
+% Preamble
+\documentclass[title={2}]{msf502exam}
+
+% Document
+\begin{document}
+
+\tableofcontents%
+
+\let\oldbegindocument\document
+\setcounter{chapter}{6}
+\foreach \chap in {7,...,9}{%
+	\ExecuteMetaData[../notes/chapter\chap]{Chapter-\chap}%
+}
+\let\document\oldbegindocument
+
+\end{document}

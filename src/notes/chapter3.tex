@@ -1,0 +1,239 @@
+\documentclass[
+	lecture={3},
+	title={Numerical Descriptive Measures}
+]{msf502notes}
+
+\begin{document}
+
+\setcounter{chapter}{2}
+%<*Chapter-3>
+\chapter{Numerical Descriptive Measures}\label{ch:numerical-descriptive-measures}
+\section{Investment Decision}\label{sec:investment-decision}
+
+\begin{table}[H]
+	\centering
+	\caption{Investment Decision}
+	\label{tab:investment-decision}
+	\begin{tabular}{|*{6}{c|}}
+		\hline
+		\textbf{Year} & \textbf{Metals} & \textbf{Income} & \textbf{Year} & \textbf{Metals} & \textbf{Income}\\
+		\hline
+		2000 & -7.34 & 4.07 & 2005 & 43.79 & 3.12\\
+		\hline
+		2001 & 18.33 & 6.52 & 2006 & 34.30 & 8.15\\
+		\hline
+		2002 & 33.35 & 9.38 & 2007 & 36.13 & 5.44\\
+		\hline
+		2003 & 59.45 & 18.62 & 2008 & -56.02 & -11.37\\
+		\hline
+		2004 & 8.09 & 9.44 & 2009 & 76.46 & 31.77\\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\begin{itemize}
+	\item Rebecca would like to
+	\begin{enumerate}
+		\item Determine the typical return of the mutual funds.
+		\item Evaluate the investment risk of the mutual funds.
+	\end{enumerate}
+\end{itemize}
+%
+\begin{itemize}
+	\item As an investment counselor at a large bank, Rebecca Johnson was asked by an inexperienced investor to explain the differences between two top-performing mutual funds:
+	\begin{itemize}
+		\item Vanguard's Precious Metals and Mining fund (Metals)
+		\item Fidelity's Strategic Income Fund (Income)
+	\end{itemize}
+	\item The investor has collected sample returns for these two funds for years 2000 through 2009.
+	These data are presented in the next slide.
+\end{itemize}
+
+\section{Measures of Central Location}\label{sec:measures-of-central-location}
+\subsection{Mean}\label{subsec:mean}
+\begin{itemize}
+	\item The arithmetic mean is a primary measure of central location.
+	\item Sample mean $\bar{x}$
+	\begin{equation}
+		\bar{x} = \frac{1}{n} \sum x_{i}
+		\label{eq:sample-mean}
+	\end{equation}
+	\item Population mean $\mu$
+	\begin{equation}
+		\mu = \frac{1}{N} \sum x_{i}
+		\label{eq:population-mean}
+	\end{equation}
+\end{itemize}
+
+Metals fund metal return:
+\[ \frac{-7.34 + 18.33 + 33.35 + 59.45 + 8.09 + 43.79 + 34.30 + 36.13 - 56.02 + 76.46}{10} = \frac{246.54}{10} = 24.654\% \]
+
+Income fund mean return:
+\[ \frac{4.07 + 3.12 + 6.52 + 8.15 + 9.38 + 5.44 + 18.62 - 11.37 + 9.44 + 31.77}{10} = \frac{85.14}{10} = 8.514\% \]
+
+\subsection{Median}\label{subsec:median}
+
+\subsection{Mode}\label{subsec:mode}
+
+\subsection{Percentiles and Box Plots}\label{subsec:percentiles-and-box-plots}
+\begin{itemize}
+	\item In general, the $p$th percentile divides a data set into two parts:
+	\begin{itemize}
+		\item Approximately $p$\% of the observations have values less than the $p$th percentile;
+		\item Approximately $(100 - p)$\% of the observations have values greater than the $p$th percentile.
+	\end{itemize}
+	\item Calculating the $p$th percentile:
+	\begin{itemize}
+		\item First, arrange the data in ascending order.
+		\item Locate the position, $L_{p}$, of the $p$th percentile $\dots$
+	\end{itemize}
+	\item Consider the sorted data from the introductory case.
+	\begin{table}[H]
+		\centering
+		\label{tab:percentile-example-data}
+		\begin{tabular}{|l|*{10}{c|}}
+			\hline
+			Position & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+			\hline
+			Value & 4.07 & 3.12 & 6.52 & 8.15 & 9.38 & 5.44 & 18.62 & -11.37 & 9.44 & 31.77\\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item For the 25th percentile, we locate
+\end{itemize}
+%
+\begin{itemize}
+	\item A box plot allows you to:
+	\begin{itemize}
+		\item Graphically display the distribution of a data set.
+		\item Compare two or more distributions.
+		\item Identify outliers in a data set.
+	\end{itemize}
+	\item Detecting outliers
+	\begin{itemize}
+		\item Calculate IQR = $Q_{3} - Q_{1}$
+		\item Calculate $1.5 \times IQR$
+		\item There are outliers if:
+		\begin{itemize}
+			\item $Q_{1} - \min > 1.5\text{IQR}$, or if
+			\item $\max - Q_{3} > 1.5\text{IQR}$, or if
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{Geometric Mean}\label{subsec:geometric-mean}
+For multiperiod returns $R_{1}, R_{2}, \dots, R_{n}$, the geometric mean return $G_{R}$ is calculated as:
+\begin{equation}
+	G_{R} = \sqrt[n]{\left( 1 + R_{1} \right)\left( 1 + R_{2} \right)\dots\left( 1 + R_{n} \right)} - 1
+	\label{eq:geometric-mean}
+\end{equation}
+where $n$ is the number of multiperiod returns.
+
+\section{Measures of Dispersion}\label{sec:measures-of-dispersion}
+\begin{itemize}
+	\item Measures of dispersion gauge the variability of a data set.
+	\item Measures of dispersion include:
+	\begin{itemize}
+		\item Range
+		\item Mean Absolute Deviation (MAD)
+		\item Variance and Standard Deviation
+		\begin{itemize}
+			\item In finance, standard deviation of a return is known as volatility
+		\end{itemize}
+		\item Coefficient of Variation (CV)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Mean Absolute Deviation (MAD)}\label{subsec:mean-absolute-deviation-(mad)}
+\begin{itemize}
+	\item MAD is an average of the absolute difference of each observation from the mean.
+\end{itemize}
+
+Sample MAD:
+\begin{equation}
+	\text{Sample MAD} = \frac{\sum | x_{i} - \bar{x} |}{n}
+	\label{eq:sample-mad}
+\end{equation}
+
+\begin{equation}
+	\text{Population MAD} = \frac{\sum | x_{i} - \mu |}{N}
+	\label{eq:population-mad}
+\end{equation}
+
+\subsection{Variance and Standard Deviation}\label{subsec:variance-and-standard-deviation}
+For a given sample,
+\begin{equation}
+	s^{2} = \frac{\sum \left( x_{i} - \bar{x} \right)^{2} }{n-1} \text{ and } s = \sqrt{s^{2}}
+	\label{eq:sample-variance}
+\end{equation}
+where $s$ is the sample standard deviation and $s^{2}$ is the sample variance.
+
+For a given population:
+\begin{equation}
+	\sigma^{2} = \frac{\sum \left( x_{i} - \mu \right)^{2} }{N} \text{ and } \sigma = \sqrt{\sigma^{2}}
+	\label{eq:population-variance}
+\end{equation}
+where $\sigma$ is the standard deviation and $\sigma^{2}$ is the variance.
+
+\begin{table}[H]
+	\centering
+	\caption{Volatility Index (VIX)}
+	\label{tab:vix-index}
+	\begin{tabular}{l|l|l}
+		\textbf{Period} & \textbf{Typical VIX Levels} & \textbf{What It Means}\\
+		\hline
+		Quiet Markets & $\sim 10--15$ & Low fear, high confidence in equity returns\\
+		Normal Conditions & $\sim 15--25$ & Modest uncertainty, moderate stability\\
+		Crisis Conditions & $>30$ & Elevated fear--uncertain markets\\
+		Peak Crises & $>60--80$ & Extreme panic or sharp dislocations
+	\end{tabular}
+\end{table}
+
+\subsection{Coefficient of Variation (CV)}\label{subsec:coefficient-of-variation-(cv)}
+\begin{itemize}
+	\item CV adjusts for differences in the magnitudes of the means.
+	\item CV is unitless, allowing easy comparison of mean-adjusted dispersion across different data sets.
+\end{itemize}
+
+\begin{equation}
+	\text{Sample CV} = \frac{s}{\bar{x}}
+	\label{eq:sample-cv}
+\end{equation}
+
+\begin{equation}
+	\text{Population CV} = \frac{\sigma}{\mu} % TODO: Check this equation
+	\label{eq:population-cv}
+\end{equation}
+
+\section{Sharpe Ratio}\label{sec:sharpe-ratio}
+\begin{itemize}
+	\item Measures the extra reward per unit of risk.
+	\item For an investment $I$, the Sharpe ratio is computed as
+	\begin{equation}
+		\text{Sharpe Ratio} = \frac{\bar{x}_{I} - \bar{R}_{f}}{s_{I}}
+		\label{eq:sharpe-ratio}
+	\end{equation}
+	where $\bar{x}_{I}$ is the mean return for the investment, $\bar{R}_{f}$ is the mean return for a risk-free asset, and $s_{I}$ is the standard deviation for the investment.
+\end{itemize}
+
+\section{Chebyshev's Theorem and the Empirical Rule}\label{sec:chebyshev's-theorem-and-the-empirical-rule}
+\begin{itemize}
+	\item Chebyshev's Theorem -- For any data set, the proportion of observation that lie \win\ $k$ standard deviations from the mean is at least $1 - \frac{1}{k^{2}}$, where $k$ is any number greater than 1.
+	\item Consider a large lecture class \w\ 280 students.
+	The mean score on an exam is 74 \w\ a standard deviation of 8.
+	At least how many students scored \win\ 85 and 90?
+	\item With $k=2$, we have $1 - \frac{1}{2^{2}} = 0.75 \dots$
+\end{itemize}
+
+\subsection{The Empirical Rule}\label{subsec:the-empirical-rule}
+\begin{itemize}
+	\item Approximately 68\% of all observations fall in the interval $\bar{x} \pm s$.
+	\item Approximately 95\% of all observations fall in the interval $\bar{x} \pm 2s$.
+	\item Approximately 99.7\% of all observations fall in the interval $\bar{x} \pm 3s$.
+\end{itemize}
+
+	% Section 3.7, summarizing grouped data, is not going to show up ever in class (homeworks, exams, etc)
+%</Chapter-3>
+
+\end{document}

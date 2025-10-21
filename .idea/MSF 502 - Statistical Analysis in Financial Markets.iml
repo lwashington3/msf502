@@ -5,10 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/styles/tex/latex/msf502" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/styles/tex/latex/msf502notes" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/styles/tex/latex/iitacademics" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/styles/tex/latex/msf502homework" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/auxil" />
       <excludeFolder url="file://$MODULE_DIR$/out" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.12" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
