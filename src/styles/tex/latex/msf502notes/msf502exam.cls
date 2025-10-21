@@ -33,3 +33,5 @@
 \@afterindentfalse
 \secdef\@chapter\@schapter}
 \makeatother
+
+\RequirePackage[fontsize=6pt]{fontsize}
