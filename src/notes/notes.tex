@@ -20,6 +20,13 @@
 \foreach \chap in {7,...,9}{%
 	\ExecuteMetaData[chapter\chap]{Chapter-\chap}
 }
+
+\setcounter{chapter}{12}
+\foreach \chap in {13,...,15}{%
+	\ExecuteMetaData[chapter\chap]{Chapter-\chap}
+}
 \let\document\oldbegindocument
+
+\ExecuteMetaData[excel-notes]{Excel-Functions}
 
 \end{document}

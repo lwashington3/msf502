@@ -1,0 +1,272 @@
+\documentclass[
+	lecture={13},
+	title={Analysis of Variance}
+]{msf502notes}
+
+\begin{document}
+
+\setcounter{chapter}{12}
+%<*Chapter-13>
+\chapter{Analysis of Variance}\label{ch:analysis-of-variance}
+\begin{objectives}
+	\item Provide a conceptual overview of ANOVA.
+	\item Conduct and evaluate hypothesis tests based on one-way ANOVA.
+	\item \sout{Use confidence intervals and Tukey's HSD method in order to determine which means differ.}
+	\item Conduct and evaluate hypothesis tests based on two-way ANOVA \w\ no interaction.
+	\item Conduct and evaluate hypothesis tests based on two-way ANOVA \w\ interaction.
+\end{objectives}
+
+\lo{Provide a conceptual overview of ANOVA.}
+\section{One-Way ANOVA}\label{sec:one-way-anova}
+\begin{itemize}
+	\item Analysis of Variance (ANOVA) is used to determine if there are differences among three or more populations.
+	\item One-way ANOVA compares population means based on one categorical variable.
+	\item We utilize a completely randomized design, comparing sample means computed for each treatment to test whether the population means differ.
+\end{itemize}
+
+\subsection{ANOVA Assumptions}\label{subsec:anova-assumptions}
+The assumptions are extensions of those we used when comparing just two populations:
+\begin{enumerate}[label=\arabic*.]
+	\item The populations are normally distributed.
+	\item The population standard deviations are unknown but assumed equal.
+	\item Samples are selected independently from each population.
+\end{enumerate}
+Here, we compare a total of $c$ populations, rather than just two.
+
+\subsection{The Hypothesis Test}\label{subsec:the-hypothesis-test}
+\lo{Conduct and evaluate hypothesis tests based on one-way ANOVA.}
+\begin{itemize}
+	\item The competing hypotheses for the one-way ANOVA:
+	\[ \begin{aligned}
+		H_{0}&: \mu_{1} = \mu_{2} = \dots = \mu_{c}\\
+		H_{A}&: \text{Not all population means are equal}
+	\end{aligned} \]
+\end{itemize}
+
+\subsection{The ANOVA Concept}\label{subsec:the-anova-concept}
+\begin{itemize}
+	\item The competing hypotheses are displayed graphically below.
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/anova}
+	\caption{The ANOVA Concept.}
+	\label{fig:anova-concept}
+\end{figure}
+\begin{itemize}
+	\item The left graph depicts the null hypothesis, where all sample means are drawn from the same distribution.
+	\item On the right, the distributions, and population means, differ.
+\end{itemize}
+
+\subsection{Methodology}\label{subsec:methodology}
+\begin{itemize}
+	\item We first compute the amount of variability \emph{between} the sample means.
+	\item Then we measure how much variability these is \emph{\win} each sample.
+	\item A ratio of the first quantity to the second forms our test statistic which follows the $F_{(df_{1}, df_{2})}$ distribution.
+\end{itemize}
+
+\subsection{Between-Treatments Estimate}\label{subsec:between-treatments-estimate}
+\begin{itemize}
+	\item To measure between-treatments variability, we compare the sample means to the overall mean, sometimes called the grand mean.
+	\item To compute the grand mean $\bar{\bar{x}}$, simply average all the values from the dataset:
+	\begin{equation}
+		\bar{\bar{x}} = \frac{\sum_{i=1}^{c} \sum_{j=1}^{n_{i}} x_{ij}}{n_{T}}
+		\label{eq:grand-mean}
+	\end{equation}
+	\item First, we compute the sum of squares due to treatments, SSTR:
+	\begin{equation}
+		SSTR = \sum_{i=1}^{c} n_{i} \left( \bar{x}_{i} - \bar{\bar{x}} \right)^{2}
+		\label{eq:sstr}
+	\end{equation}
+	\item Then, we compute the mean square for treatments, MSTR:
+	\begin{equation}
+		MSTR = \frac{SSTR}{c-1}
+		\label{eq:mstr}
+	\end{equation}
+	\item MSTR is our measure of variability between samples.
+\end{itemize}
+
+\subsection{\Win-Treatments Estimate}\label{subsec:within-treatments-estimate}
+\begin{itemize}
+	\item The denominator of our test statistic measures the \win-sample variability.
+	It really is an extension of the pooled-sample variance that we used in a two-sample comparison.
+	\item First, we compute the error sum of squares, \emph{SSE}:
+	\begin{equation}
+		SSE = \sum_{i=1}^{c} (n_{i} - 1)s_{i}^{2}
+		\label{eq:sse}
+	\end{equation}
+	\item Then, we compute the mean squared error, MSE:
+	\begin{equation}
+		MSE = \frac{SSE}{n_{T} - c}
+		\label{eq:mse}
+	\end{equation}
+\end{itemize}
+
+\subsection{The $F$ Test}\label{subsec:the-$f$-test}
+\begin{itemize}
+	\item We test whether average cost savings from using public transportation differ between the four cities:
+	\[ \begin{aligned}
+		H_{0}:& \ \mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}\\
+		H_{A}:& \text{ Not all population means are equal}
+	\end{aligned} \]
+	\item The value of the test statistic is calculated as
+	\begin{equation}
+		F_{(df_{1}, df_{2})} = \frac{MSTR}{MSE},
+		\label{eq:f-statistic}
+	\end{equation}
+	where $df_{1} = c - 1$ and $df_{2} = n_{T} - c$.
+	\item For $c = 4$ and $n_{T} = 24$, we use the $F_{(3, 20)}$ distribution.
+	At the 5\% significance level, the critical value is 3.10.
+\end{itemize}
+
+\subsection{The $F$ distribution}\label{subsec:the-$f$-distribution}
+\begin{itemize}
+	\item $F_{(df_{1}, df_{2})}$ distribution is a family of distributions, each one is define by two degrees of freedom parameters, one for the numerator and one for the denominator.
+	\item More details of $F$ distribution can be found in Chapter 11.
+	\item $F_{\alpha, (df_{1}, df_{2})}$ represents a value such that the area in the right tail of the distribution is $\alpha$.
+	\item With two $df$ parameters, $F$ tables occupy several pages.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/f-distribution}
+	\caption{The $F$-distribution}
+	\label{fig:f-distribution}
+\end{figure}
+
+\subsection{Right-tail Values}\label{subsec:right-tail-values}
+\begin{itemize}
+	\item With $df_{1} = 6$ and $df_{2} = 8$, 5\% of the area falls above \emph{3.58}.
+\end{itemize}
+
+\subsection{Left-tail Values}\label{subsec:left-tail-values}
+\begin{itemize}
+	\item $F_{1-\alpha, (df_{1}, df_{2})}$ represents a value such that the area in the left tail of the distribution is $\alpha$.
+	\begin{equation}
+		F_{1-\alpha, (df_{\textcolor{red}{1}}, df_{\textcolor{red}{2}})} = \frac{1}{F_{\alpha, (df_{\textcolor{red}{2}}, df_{\textcolor{red}{1}})}}
+		\label{eq:f-left-tail}
+	\end{equation}
+	\item For an $F_{(6, 8)}$ distribution, find the value such that the area in the left tail is 5\%, or $F_{(0.95,(6,8))}$.
+	\item First find $F_{0.05, (8, 6)} = 4.15$.
+	\[ \begin{aligned}
+		F_{(0.95,(6,8))} &= \frac{1}{4.15}\\
+		&= 0.24
+	\end{aligned} \]
+\end{itemize}
+
+\subsection{Do savings differ by city?}\label{subsec:do-savings-differ-by-city?}
+\begin{itemize}
+	\item We have computed $MSTR = 4,401,573$ and $MSE = 7,209$.
+	\item Our test statistic is then:
+	\[ \begin{aligned}
+		F_{(3, 20)} &= \frac{4,401,573}{7,209}\\ &= 610.57\\
+	\end{aligned} \]
+	\item The greatly exceeds the critical value of 3.10, so we conclude that the cost savings differ across cities.
+	\item The ANOVA test does not tell us which cities have different cost savings, but later in the chapter, we will develop techniques to help answer these questions.
+\end{itemize}
+
+\section{Multiple Comparison Methods}\label{sec:multiple-comparison-methods}
+\lo{Use confidence intervals and Tukey's HSD method in order to determine which means differ.}
+\begin{itemize}
+	\item When the one-way ANOVA finds significant differences between the population means, it is natural to ask which means differ.
+	\item In this section, we show two techniques for performing this follow-up analysis:
+	\begin{itemize}
+		\item Fisher's Least Difference Method
+		\item Tukey's Honestly Significant Differences Method
+	\end{itemize}
+\end{itemize}
+
+% Don't worry about pages 23-32, start on page 33
+
+\section{Two-Way ANOVA \w\ Interactions}\label{sec:two-way-anova-w-interactions}
+\lo{Conduct and evaluate hypothesis tests based on two-way ANOVA \w\ no interaction.}
+\begin{itemize}
+	\item We now consider problems where the data are categorized by two factors.
+	\item For example, we may want to determine if the brand of a hybrid car and the octane level of the gasoline influence average miles per gallon.
+	\item Using a two-way ANOVA, we are able to assess the effect of each factor while controlling for the other one.
+\end{itemize}
+
+\begin{itemize}
+	\item If the education level of the 12 workers is considered, a different story emerges.
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\caption{Workers Education Level}
+	\label{tab:}
+	\begin{tabular}{|l|*{4}{r|}}
+		\hline
+		 & \multicolumn{3}{c|}{Field of Employment (Factor A)} & \\
+		\hline
+		Education Level (Factor B) & Educational Services & Financial Services & Medical Services & Factor B Means\\
+		\hline
+		High School & 18 & 25 & 26 & 23.00\\
+		\hline
+		Bachelor's & 35 & 45 & 43 & 41.00\\
+		\hline
+		Master's & 46 & 58 & 62 & 55.33\\
+		\hline
+		Ph.D. & 75 & 90 & 110 & 91.67\\
+		\hline
+		Factor A Means & 43.50 & 54.50 & 60.25 & 52.75\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{itemize}
+	\item It is clear that education also impacts wage.
+\end{itemize}
+
+\subsection{The Randomized Block Design}\label{subsec:the-randomized-block-design}
+\begin{itemize}
+	\item This type of two-way ANOVA is called a \emph{randomized block design}.
+	\item The term ``block'' refers to a matched set of observations across the treatments.
+	\item In the salary example, the treatments are the three fields of employment.
+	\item The blocks are the education levels.
+	Until we account for them, we cannot capture the employment field effects.
+\end{itemize}
+
+\subsection{The ANOVA Layout}\label{subsec:the-anova-layout}
+\begin{table}[H]
+	\centering
+	\caption{The ANOVA Layout}
+	\label{tab:anove-layout}
+	\begin{tabular}{|l|c|l|l|l|}
+		\hline
+		\textbf{Source of Variation} & \textbf{SS} & \textbf{df} & \textbf{MS} & \textbf{F}\\
+		\hline
+		Rows & $SSB$ & $r - 1$ & $MSB = \frac{SSB}{r - 1}$ & $F_{(df_{1}, df_{2})} = \frac{MSB}{MSE}$\\
+		\hline
+		Columns & $SSA$ & $c - 1$ & $MSA = \frac{SSA}{c - 1}$ & $F_{(df_{1}, df_{2})} = \frac{MSA}{MSE}$\\
+		\hline
+		Error & $SSE$ & $n_{T} - c - r + 1$ & $MSE = \frac{SSE}{n_{T} - c - r + 1}$ & \\
+		\hline
+		Total & $SST$ & $n_{T} - 1$ & & \\
+		\hline
+	\end{tabular}
+\end{table}
+
+There are now three sources of variation:
+\begin{enumerate}
+	\item Row variability (due to blocks or Factor F),
+	\item Column variability (due to treatments of Factor A), and
+	\item Variability due to chance or SSE
+\end{enumerate}
+
+\section{Two-Way ANOVA \w\ Interaction}\label{sec:two-way-anova-w-interaction}
+\lo{Conduct and evaluate hypothesis tests based on two-way ANOVA \w\ interaction.}
+\begin{itemize}
+	\item Now we will look at data categorized by two factors, but \w\ two or more values observed in each ``cell''.
+	\item In two-way ANOVA \w\ interaction, we partition the total variability of the data set into four components: $SSA$, $SSB$, $SSAB$, and $SSE$.
+\end{itemize}
+
+\subsection{What is Interaction?}\label{subsec:what-is-interaction?}
+\begin{itemize}
+	\item Interaction means that the effect of one factor depends on the level of the other factor.
+	\item For example, perhaps education impacts salaries in the financial sector, but not in professional sports.
+	The two categories, employment sector and education, interact differently depending on the sector.
+\end{itemize}
+
+%</Chapter-13>
+
+\end{document}

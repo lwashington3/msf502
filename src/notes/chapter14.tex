@@ -1,0 +1,237 @@
+\documentclass[
+	lecture={14},
+	title={Regression Analysis}
+]{msf502notes}
+
+\begin{document}
+
+\setcounter{chapter}{13}
+%<*Chapter-14>
+\chapter{Regression Analysis}\label{ch:regression-analysis}
+\begin{objectives}
+	\item Conduct a hypothesis test for the population correlation coefficient.
+	\item Discuss the limitations of correlation analysis.
+	\item Estimate the simple linear regression model and interpret the coefficients.
+	\item Estimate the multiple linear regression model and interpret the coefficients.
+	\item Calculate and interpret the standard error of the estimate.
+	\item Calculate and interpret the coefficient of determination $R^{2}$.
+	\item Differentiate between $R^{2}$ and adjusted $R^{2}$.
+\end{objectives}
+
+\section{Covariance and Correlation}\label{sec:covariance-and-correlation}
+\lo{Conduct a hypothesis test for the population correlation coefficient.}
+\begin{itemize}
+	\item We examined covariance and correlation as exploratory tools in Chapters \hyperref[sec:tabular-]{2} and \hyperref[ch:numerical-descriptive-measures]{3}.
+	\item Recall that covariance is a numerical measure that reveals the direction of the linear relationship between two variables.
+	\item The sample covariance is computed as:
+	\begin{equation}
+		s_{xy} = \frac{\sum_{i=1}^{n} (x_{i} - \bar{x})(y_{i} - \bar{y})}{n - 1}
+		\label{eq:sample-covariance}
+	\end{equation}
+\end{itemize}
+
+\subsection{Computing the Correlation}\label{subsec:computing-the-correlation}
+\begin{itemize}
+	\item The correlation coefficient indicates both the direction and the strength of the linear relationship.
+	\item The sample correlation coefficient can be computed using:
+	\begin{equation}
+		r_{xy} = \frac{s_{xy}}{s_{x}s_{y}}
+		\label{eq:sample-correlation-coefficient}
+	\end{equation}
+	\item The correlation coefficient has the same sign as the covariance; however, its value ranges between -1 and +1.
+\end{itemize}
+
+\subsection{Testing for Significant Correlation}\label{subsec:testing-for-significant-correlation}
+\begin{itemize}
+	\item We need to be able to determine whether the relationship implied by the sample correlation coefficient is real or due to chance.
+	\item In other words, we would like to test whether the population correlation coefficient is different from zero:
+	\[ \begin{aligned}
+		H_{0}:& \rho_{xy} = 0\\
+		H_{A}:& \rho_{xy} \neq 0
+	\end{aligned} \]
+\end{itemize}
+
+\subsection{The Test Statistic}\label{subsec:the-test-statistic-for-regression}
+\begin{itemize}
+	\item The test statistic is
+	\begin{equation}
+		t_{df} = \frac{r_{xy}}{s_{r}},
+		\label{eq:regression-test-statistic}
+	\end{equation}
+	where
+	\begin{equation}
+		s_{r} = \sqrt{\frac{1 - r_{xy}^{2}}{n-2}}
+		\label{eq:regression-r}
+	\end{equation}
+	The test statistic follows a $t$ distribution \w\ $df = n - 2$.
+\end{itemize}
+
+\subsection{Limitations of Correlation Analysis}\label{subsec:limitations-of-correlation-analysis}
+\lo{Discuss the limitations of correlation analysis.}
+\begin{itemize}
+	\item The correlation coefficient captures only a linear relationship.
+	\item The correlation coefficient may not be a reliable measure in the presence of outliers.
+	\item Even if two variables are highly correlated, one does not necessarily cause the other.
+\end{itemize}
+
+\section{The Simple Regression Model}\label{sec:the-simple-regression-model}
+\lo{Estimate the simple linear regression model and interpret the coefficients.}
+\begin{itemize}
+	\item While the correlation coefficient may establish a linear relationship, it does not suggest that one variable causes the other.
+	\item With \emph{regression analysis}, we explicitly assume that one variance, called the \emph{response variable}, is influenced by other variables, called the \emph{explanatory variables.}
+	\item Using regression analysis, we may predict the response variable given values for our exploratory variables.
+\end{itemize}
+
+% Stochastic Relationship actually goes here
+
+\begin{itemize}
+	\item The simple linear regression model is defined as
+	\begin{equation}
+		y = \beta_{0} + \beta_{1}x + \epsilon
+		\label{eq:simple-linear-regression-model}
+	\end{equation}
+	where $y$ and $x$ are the response and explanatory variables, respectively, and $\epsilon$ is the random error term.
+	\item The coefficients $\beta_{0}$ and $\beta_{1}$ are the unknown parameters to be estimated.
+\end{itemize}
+
+\subsection{Sample Regression Equation}\label{subsec:sample-regression-equation}
+\begin{itemize}
+	\item By fitting our data to the model, we obtain the equation
+	\begin{equation}
+		\hat{y} = b_{0} + b_{1}x,
+		\label{eq:sample-regression}
+	\end{equation}
+	where $\hat{y}$ is the estimated response variable, $b_{0}$ is the estimate of $\beta_{0}$, and $b_{1}$ is the estimate of $\beta_{1}$.
+	\item Since the predictions cannot be totally accurate, the difference between the predicted and actual value represents the \emph{residual} $y = y - \hat{y}$.
+\end{itemize}
+
+\subsection{The Least Squares Estimates}\label{subsec:the-least-squares-estimates}
+\begin{itemize}
+	\item The two parameters $\beta_{0}$ and $\beta_{1}$ are estimated by minimizing the sum of squared residuals.
+	\item The slope coefficient is estimated as
+	\begin{equation}
+		b_{1} = \frac{\sum (x_{i} - \bar{x})(y_{i} - \bar{y})}{\sum (x_{i} - \bar{x})^{2}}
+		\label{eq:least-squares-slope}
+	\end{equation}
+	\item Then, compute the intercept:
+	\begin{equation}
+		b_{0} = \bar{y} - b_{1}\bar{x}
+		\label{eq:least-squares-intercept}
+	\end{equation}
+\end{itemize}
+
+\subsection{Stochastic Relationships}\label{subsec:stochastic-relationships}
+\begin{itemize}
+	\item If the value of the response variable is uniquely determined by the values of the explanatory variables, we say that the relationship is \emph{deterministic}.
+	\item However if, as we find in most fields of research, that the relationship is inexact due to omission of relevant factors, we say that the relationship is \emph{stochastic}.
+	\item In regression analysis, we include a stochastic error term, that acknowledges that the actual relationship between the response and explanatory variables is not deterministic.
+\end{itemize}
+
+\section{The Multiple Regression Model}\label{sec:the-multiple-regression-model}
+\lo{Estimate the multiple linear regression model and interpret the coefficients.}
+\begin{itemize}
+	\item If there is more than one explanatory variable available, we can use \emph{multiple regression}.
+	\item For example, we analyzed how debt payments are influenced by income, but ignored the possible effect of unemployment.
+	\item Multiple regression allows us to explore how several variables influence the response variable.
+	\item Suppose there are $k$ explanatory variables.
+	The multiple linear regression model is defined as:
+	\begin{equation}
+		y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \dots + \beta_{k}x_{k} + \epsilon,
+		\label{eq:multiple-regression-model}
+	\end{equation}
+	where $x_{1}, x_{2}, \dots, x_{k}$ are the explanatory variables and the $\beta_{j}$ values are the unknown parameters that we will estimate from the data.
+	\item As before, $\epsilon$ is the random error term.
+\end{itemize}
+
+\subsection{The Estimated Equation}\label{subsec:the-estimated-equation}
+\begin{itemize}
+	\item The sample multiple regression equation is:
+	\begin{equation}
+		y = b_{0} + b_{1}x_{1} + b_{2}x_{2} + \dots + b_{k}x_{k}
+		\label{eq:multiple-estimated-equation}
+	\end{equation}
+	\item In multiple regression, there is a slight modification in the interpretation of the slopes $b_{1}$ through $b_{k}$ as they show ``partial'' influences.
+	\item For example, if there are $k=3$ explanatory variables, the value $b_{1}$ estimates how a change in $x_{1}$ will influence $y$ assuming $x_{2}$ and $x_{3}$ are held constant.
+\end{itemize}
+
+\section{Goodness-of-Fit Measures}\label{sec:goodness-of-fit-measures}
+\lo{Calculate and interpret the standard error of the estimate.}
+\begin{itemize}
+	\item We will introduce three measures to judge how well the sample regression fits the data.
+\end{itemize}
+
+\begin{enumerate}[label=\arabic*.]
+	\item \hyperref[subsec:standard-error-of-the-estimate]{The Standard Error of the Estimate}
+	\item \hyperref[subsec:the-coefficient-of-determination]{The Coefficient of Determination}
+	\item \hyperref[subsec:the-adjusted-r2]{The Adjusted $R^{2}$}
+\end{enumerate}
+
+\subsection{Mean Squared Error}\label{subsec:mean-squared-error}
+\begin{itemize}
+	\item To compute the standard error of the estimate, we first compute the mean squared error (\hyperref[eq:mse]{MSE}).
+	\item We first compute the error sum of squared:
+	\begin{equation}
+		\begin{aligned}
+			SSE &= \sum_{i=1}^{n} e_{i}^{2}\\
+			&= \sum_{i=1}^{n} \left( y_{i} - \hat{y} \right)^{2}
+		\end{aligned}
+		\label{eq:sse-2}
+	\end{equation}
+	\item Dividing $\hyperref[eq:sse]{SSE}$ by the appropriate degrees of freedom, $n - k - 1$, yields the MSE:
+	\begin{equation}
+		MSE = \frac{SSE}{n - k - 1}
+		\label{eq:mse-2}
+	\end{equation}
+\end{itemize}
+
+\subsection{Standard Error of the Estimate}\label{subsec:standard-error-of-the-estimate}
+\begin{itemize}
+	\item The square root of the $MSE$ is the \emph{standard error of the estimate}, $s_{e}$.
+	\begin{equation}
+		\begin{aligned}
+			s_{e} &= \sqrt{MSE}\\
+			&= \sqrt{\frac{SSE}{n - k - 1}}\\
+			&= \sqrt{\frac{\sum e_{i}^{2}}{n - k - 1}}\\
+			&= \sqrt{\frac{\sum (y_{i} - \hat{y})^{2}}{n - k - 1}}\\
+		\end{aligned}
+		\label{eq:standard-error-of-the-estimate}
+	\end{equation}
+	\item In general, the less dispersion around the regression line, the smaller the $s_{e}$, which implies a better fit to the model.
+\end{itemize}
+
+\subsection{The Coefficient of Determination}\label{subsec:the-coefficient-of-determination}
+\lo{Calculate and interpret the coefficient of determination $R^{2}$.}
+\begin{itemize}
+	\item The \emph{coefficient of determination}, commonly referred to as the $R^{2}$, is another goodness-of-fit measure that is easier to interpret than the standard error.
+	\item In particular, the $R^{2}$ quantifies the fraction of variation in the response variable that is explained by changes in the explanatory variables.
+	\item The coefficient of determination can be computed as
+	\begin{equation}
+		\begin{aligned}
+			R^{2} &= 1 - \frac{SSE}{SST}\\
+			&= \frac{SSR}{SST}
+		\end{aligned}
+		\label{eq:coefficient-of-determination}
+	\end{equation}
+	where $SSE$ is~\eqref{eq:sse-2} and $SST = \sum(y_{i} - \bar{y})^{2}$.
+	\item The $SST$, called the total sum of squares, denotes the total variation in the response variable.
+	\item The $SST$ can be broken down into two components: the variation explained by the regression equation (the regression sum of squares or $SSR$) and the unexplained variation (the error sum of squares or $SSE$).
+\end{itemize}
+
+\subsection{The Adjusted $R^{2}$}\label{subsec:the-adjusted-r2}
+\lo{Differentiate between $R^{2}$ and adjusted $R^{2}$.}
+\begin{itemize}
+	\item More explanatory variables always result in a higher $R^{2}$.
+	\item But some of these variables may be unimportant and show not be in the model.
+	\item The \emph{adjusted $R^{2}$} tries to balance the raw explanatory power against the desire to include only important predictors.
+	\item The Adjusted $R^{2}$ is computed as:
+	\begin{equation}
+		\text{Adjusted } R^{2} = 1 - (1 - R^{2})\left( \frac{n-1}{n - k - 1} \right)
+		\label{eq:adjusted-r2}
+	\end{equation}
+	\item As you can see, the adjusted $R^{2}$ penalizes the $R^{2}$ for adding additional explanatory variables.
+	\item As \w\ our other goodness-of-fit measures, we typically allow the computer to compute the Adjusted $R^{2}$.
+	It's shown directly below the $R^{2}$ in the Excel regression output.
+\end{itemize}
+%</Chapter-14>
+
+\end{document}

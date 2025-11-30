@@ -1,18 +1,18 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="September 30, 2025" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="Notes">
+  <configuration default="false" name="Homework 3" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="Homeworks">
     <texify>
       <compiler>PDFLATEX</compiler>
       <compiler-path />
-      <pdf-viewer>none</pdf-viewer>
+      <pdf-viewer>evince</pdf-viewer>
       <require-focus>false</require-focus>
       <viewer-command>pdfopener</viewer-command>
       <compiler-arguments />
       <envs />
       <expand-macros-in-environment-variables>false</expand-macros-in-environment-variables>
       <before-run-command />
-      <main-file>$PROJECT_DIR$/src/notes/chapter7.tex</main-file>
-      <output-path>$PROJECT_DIR$/out/notes</output-path>
-      <auxil-path>$PROJECT_DIR$/auxil/notes</auxil-path>
+      <main-file>$PROJECT_DIR$/src/homework/homework3.tex</main-file>
+      <output-path>$PROJECT_DIR$/out/homework</output-path>
+      <auxil-path>$PROJECT_DIR$/auxil/homework</auxil-path>
       <compile-twice>false</compile-twice>
       <output-format>PDF</output-format>
       <latex-distribution>MIKTEX</latex-distribution>

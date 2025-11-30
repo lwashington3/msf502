@@ -1,0 +1,37 @@
+\documentclass[12pt]{report}
+
+\usepackage[title={Useful Excel Functions}]{msf502}
+
+\begin{document}
+%<*Excel-Functions>
+\newcommand{\excel}[4][]{%
+	\texttt{%
+		\if#1\empty%
+		#2%
+		\else%
+			\eqref{#1}~\hyperref[#1]{#2}%
+		\fi
+	}(#3) -- #4%
+}
+\setlength{\parindent}{0in}
+
+\excel[eq:normal-distribution]{NORM.S.INV}{probability}{returns the inverse of the standard normal cumulative distribution. Finds the $z$-value given a probability.}
+
+\excel{T.INV.2T}{probability, $df$}{Returns the two-tailed inverse of the $t$-distribution. Gets the two-tailed $t$0value for a given probability.}
+
+\excel[eq:sample-variance]{STDEV.S}{$x_{1}$, $x_{2}$, $\dots$}{Sample standard deviation of a population.}
+
+\excel{NORM.S.DIST}{$z$, cumulative=TRUE}{gets the probability given $z$.}
+
+\excel{T.DIST}{$x$, $df$, cumulative=TRUE}{returns the probability for the (left-tailed) $t$-distribution.}
+
+\excel{T.DIST.2T}{$x$, $df$}{returns the probability for the two-tailed $t$-distribution.}
+
+\excel[eq:binomial-probability-distribution]{BINOM.DIST}{\# of successes in trials, \# of trials, probability of success}{returns the individual term binomial distribution probability.}
+
+\excel[eq:possion]{POISSON.DIST}{$x$, mean, cumulative=TRUE}{}
+
+\excel[eq:exponential-cumulative-distribution]{EXPON.DIST}{$x$, $\lambda$, cumulative=TRUE}{}
+
+%</Excel-Functions>
+\end{document}

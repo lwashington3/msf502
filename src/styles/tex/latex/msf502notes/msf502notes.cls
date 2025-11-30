@@ -38,6 +38,7 @@
 \RequirePackage{makecell}
 \usetikzlibrary{shapes.geometric}
 
+\RequirePackage{ulem}
 \RequirePackage{enumitem}
 
 \RequirePackage[most]{tcolorbox}

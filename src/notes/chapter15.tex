@@ -1,0 +1,224 @@
+\documentclass[
+	lecture={15},
+	title={Inference with Regression Models}
+]{msf502notes}
+
+\begin{document}
+
+\setcounter{chapter}{14}
+%<*Chapter-15>
+\chapter{Inference \w\ Regression Models}\label{ch:inference-w-regression-models}
+\begin{objectives}
+	\item Conduct tests of individual significance.
+	\item Conduct a test of joint significance.
+	\item \sout{Conduct a general test of linear restrictions.}
+	\item \sout{Calculate and interpret interval estimates for predictions.}
+	\item Explain the role of the assumptions on the OLS estimators.
+	\item Describe common violations of the assumptions and offer remedies.
+\end{objectives}
+
+\section{Tests of Significance}\label{sec:tests-of-significance}
+\lo{Conduct tests of individual significance.}
+\begin{itemize}
+	\item With two explanatory variables to choose from, we can formulate three linear models:
+	\[ \begin{aligned}
+		\text{Model 1: Win}&= \beta_{0} + \beta_{1}\text{BA} + \epsilon\\
+		\text{Model 2: Win}&= \beta_{0} + \beta_{1}\text{ERA} + \epsilon\\
+		\text{Model 3: Win}&= \beta_{0} + \beta_{1}\text{BA} + \beta_{2}\text{ERA} + \epsilon\\
+	\end{aligned} \]
+\end{itemize}
+
+\subsection{Tests of Individual Significance}\label{subsec:tests-of-individual-significance}
+\begin{itemize}
+	\item Consider our standard multiple regression model:~\eqref{eq:multiple-regression-model}.
+	\item In general, we can test whether $\beta_{j}$ is equal to, greater than, or less than some hypothesized value $\beta_{j0}$.
+	\item This test could have one of three forms:
+\end{itemize}
+\begin{table}[H]
+	\centering
+	\caption{Three Forms of Individual Significance}
+	\label{tab:three-forms-of-individual-significance}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Two-tailed Test} & \textbf{Right-tailed Test} & \textbf{Left-tailed Test}\\
+		\hline
+		$H_{0}: \beta_{j} = \beta_{j0}$ & $H_{0}: \beta_{j} \leq \beta_{j0}$ & $H_{0}: \beta_{j} \geq \beta_{j0}$\\
+		\hline
+		$H_{A}: \beta_{j} \neq \beta_{j0}$ & $H_{A}: \beta_{j} > \beta_{j0}$ & $H_{A}: \beta_{j} < \beta_{j0}$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{The Test Statistic}\label{subsec:the-test-statistic}
+\begin{itemize}
+	\item The appropriate test statistic is:
+	\begin{equation}
+		t_{df} = \frac{b_{j} - \beta_{j0}}{s_{b_{j}}}
+		\label{eq:regression-inference-test-statistic}
+	\end{equation}
+	\item $s_{b_{j}}$ is the standard error of the estimator $b_{j}$.
+	\item The test statistic will follow a $t$-distribution \w\ degrees of freedom $df = n - k - 1$.
+\end{itemize}
+
+\subsection{Testing $\beta_{j}=0$}\label{subsec:testing-beta-j-0}
+\begin{itemize}
+	\item By far, the most common hypothesis test for an individual coefficient is to test whether its value differs from zero.
+	\item To see why, consider our model:~\eqref{eq:multiple-regression-model}.
+	\item If a coefficient is equal to zero, then it implies that the explanatory variable is not a significant predictor of the response variable.
+\end{itemize}
+
+\subsection{Computer-Generated Output}\label{subsec:computer-generated-output}
+\begin{itemize}
+	\item Virtually all statistical software will automatically report a test statistic and a $p$-value \w\ each coefficient estimate.
+	\item These values can be used whether the regression coefficient differs from zero.
+	\item To perform a one-sided test where the hypothesized value is zero, divide the computer-reported $p$-value in half.
+	\item If we wish to test whether the coefficient differs from a non-zero value, we need to compute a new test statistic.
+\end{itemize}
+
+\subsection{Intervals for the Parameters}\label{subsec:intervals-for-the-parameters}
+\begin{itemize}
+	\item A confidence interval for the $\beta_{j}$ parameter can be constructed using the formula:
+	\begin{equation}
+		b_{j} \pm t_{\alpha/2, df} s_{b_{j}}
+		\label{eq:regression-confidence-interval}
+	\end{equation}
+	\item This can also be used to perform the two-sided test to determine whether a coefficient differs from zero.
+	\item For ERA, the interval of $[-0.15, -0.08]$ does not include 0, indicating ERA is a significant predictor.
+\end{itemize}
+
+\subsection{Test for a Non-Zero Slope}\label{subsec:test-for-a-non-zero-slope}
+\begin{itemize}
+	\item A capital asset pricing model follows the equation:
+	\begin{equation}
+		y = \alpha + \beta x + \epsilon
+		\label{eq:non-zero-slope-test}
+	\end{equation}
+	where $y$ = the risk-adjusted return of an asset, $R - R_{f}$ and $x$ = the risk-adjusted return to the market $R_{M} - R_{f}$.
+	\item The estimate of $\beta$ is called the investment's \emph{beta value}.
+	\item A $\beta > 1$ implies the stock is ``aggressive'', while a $\beta < 1$ implies it is ``conservative''.
+%	\item If the value of the test statistic is less than the critical value, we reject the null hypothesis
+\end{itemize}
+
+\section{Test of Joint Significance}\label{sec:test-of-joint-significance}
+\lo{Conduct a test of joint significance.}
+\begin{itemize}
+	\item In addition to conducting tests of individual significance, we may also want to test the joint significance of all $k$ variables at once.
+	\item The competing hypotheses for a test of joint significance are:
+	\[ \begin{aligned}
+		H_{0}&: \beta_{1} = \beta_{2} = \dots = \beta_{k} = 0\\
+		H_{A}&: \text{at least one } \beta_{j} \neq 0\\
+	\end{aligned} \]
+\end{itemize}
+
+\subsection{The Test Statistic}\label{subsec:joint-significance-test-statistic}
+\begin{itemize}
+	\item The test statistic for a test of joint significant is
+	\begin{equation}
+		\begin{aligned}
+			F(df1, df2) &= \frac{MSR}{MSE}\\
+			&= \frac{\frac{SSR}{k}}{\frac{SSE}{n-k-1}}
+		\end{aligned}
+		\label{eq:joint-significance-test-statistic}
+	\end{equation}
+	where $MSR$ and $\hyperref[eq:mse-2]{MSE}$ are the mean regression sum of squares and the mean error sum of squares, respectively.
+	\item The numerator degrees of freedom, $df1=k$, while the denominator degrees of freedom, $df2 = n - k - 1$.
+\end{itemize}
+
+\section{A General Test of Linear Restrictions}\label{sec:a-general-test-of-linear-restrictions}
+\lo{Conduct a general test of linear restrictions.}
+\begin{itemize}
+	\item The significance tests in the previous section can also be labeled tests of \textbf{linear restrictions}.
+	\item For example, if we have $k=3$ explanatory variables, testing whether $\beta_{2} = \beta_{3} = 0$ is equivalent to testing whether to restrict the model to only $x_{1}$.
+	\item In this section, we apply the $F$-test for any number of linear restrictions; the resulting $F$-test is often referred to as the \textbf{partial F}-test.
+\end{itemize}
+
+\section{Interval Estimates for Predictions}\label{sec:interval-estimates-for-predictions}
+\lo{Calculate and interpret interval estimates for predictions.}
+
+\section{Model Assumptions and Common Violations}\label{sec:model-assumptions-and-common-violations} % page 37
+\lo{Explain the role of the assumptions on the OLS estimators.}
+\begin{itemize}
+	\item The statistical properties of OLS estimator, as well as the validity of the testing procedures, depend on a number of assumptions.
+	We discuss those assumptions now.
+	\begin{enumerate}[label=\arabic*.]
+		\item The model~\eqref{eq:multiple-regression-model} is linear in the $\beta$ parameters with an additive error $\epsilon$.
+		\item Conditional on the $x_{1}, \dots, x_{k}$ values, the expected error is 0, thus:
+		\begin{equation}
+			E(y) = \beta_{0} + \beta_{1}x_{1} + \dots + \beta_{k}x_{k}
+			\label{eq:ols-expected-value}
+		\end{equation}
+	\end{enumerate}
+	\item There is no exact linear relationship among the $x_{1}, \dots, x_{k}$ values (no perfect \emph{multicollinearity}).
+	\item The variance of the error term $\epsilon$ is the same for all $x_{1}, \dots, x_{k}$ values.
+	We call this \emph{homoskedasticity}.
+	\item The error term $\epsilon$ is uncorrelated across observations, conditional on the explanatory variables.
+	There is no \emph{serial correlation} or \emph{autocorrelation}.
+	\item The error term $\epsilon$ is not correlated \w\ any of the predictors $x_{1}, \dots, x_{k}$,
+	In other words, there is no \emph{endogeneity}.
+	\item The error term $\epsilon$ is normally distributed.
+	This assumption allows us to do hypothesis testing.
+	If normality is not true, the tests may not be valid.
+\end{itemize}
+
+\subsection{Checking the Assumptions}\label{subsec:checking-the-assumptions}
+\begin{itemize}
+	\item The true error terms $\epsilon$ cannot be observed \bc\ they exist only in the population.
+	We can, however, look at the residuals, $e = y - \hat{y}$, where $\hat{y} = b_{0} + \sum b_{i}x_{i}$, for each observation/
+	\item It is common to plot to residuals on the vertical axis and an explanatory variable on the horizontal axis.
+	\item When estimating a regression in Excel, the dialog box that opens after choosing \textbf{Data $>$ Data Analysis $>$ Regression} allows us to select \textit{Residuals} and \emph{Residual Plots} options.
+\end{itemize}
+
+\subsection{Common Violation 1: The Model Suffers from Multicollinearity}\label{subsec:common-violation-1:-the-model-suffers-from-multicollinearity}
+\lo{Describe common violations of the assumptions and offer remedies.}
+\begin{itemize}
+	\item Perfect multicollinearity exists when two or more $x$ variables have an exact linear relationship.
+	\item For example, suppose the $x$ data includes total cost, fixed cost and variable cost.
+	\item Other data sets may have a great degree of multicollinearity that is not perfect.
+	\item In these cases, we may see a high $R^{2}$ coupled \w\ individually insignificant explanatory variables.
+	Additionally, unintuitive result may be indicative.
+	\item A sample correlation between explanatory variables that is $>0.80$ or $<-0.80$ suggests severe multicollinearity.
+\end{itemize}
+
+\subsection{Remedying Multicollinearity}\label{subsec:remedying-multicollinearity}
+\begin{itemize}
+	\item A good remedy may be simply drop one of the collinear variables if we can justify it as redundant.
+	\item Alternatively, we could try to increase our sample size.
+	\item Another option would be to try to transform our variables so that they are no longer collinear.
+	\item Last, especially if we are interested only in maintaining a high predictive power, it may make sense to do nothing.
+\end{itemize}
+
+\subsection{Common Violation 2: The Error Term is Heteroskedastic}\label{subsec:common-violation-2:-the-error-term-is-heteroskedastic}
+\begin{itemize}
+	\item The variance of the error term changes for different values of at least one explanatory variable.
+	\item Informal residual plots can gauge heteroskedasticity (display a marked pattern).
+\end{itemize}
+
+\subsection{Remedying Heteroskedastic}\label{subsec:remedying-heteroskedastic}
+\begin{itemize}
+	\item Heteroskedastic results in inefficient estimators and the hypothesis tests for significance are no longer valid.
+	\item To get around the second problem, some researchers use OLS estimates along \w\ corrected standard errors, called White's standard errors.
+	Many statistical packages have this option available, unfortunately the current version of Excel does not.
+\end{itemize}
+
+\subsection{Common Violation 3: The Error Term is Serially Correlated}\label{subsec:common-violation-3:-the-error-term-is-serially-correlated}
+\begin{itemize}
+	\item We assume that the error term is uncorrelated across observations when obtaining OLS estimates.
+	\item But this often breaks down in time series data.
+	\item Remedies are not easily accessibly using Excel.
+\end{itemize}
+
+\subsubsection{Common Violation 4: The Explanatory Variable is Endogenous}\label{subsubsec:common-violation-4:-the-explanatory-variable-is-endogenous}
+\begin{itemize}
+	\item Endogeneity in the regression model refers to the error term being correlated \w\ the explanatory variables.
+	\item This commonly occurs due to an omitted explanatory variable.
+	\item For example, a person's salary may be highly correlated \w\ that person's innate ability.
+	But since we cannot included it, ability gets incorporated in the error term.
+	If we try to predict salary by years of education, which may also be correlated \w\ innate ability, then we have an endogeneity problem.
+	\item Endogeneity will result in biased estimators, and so is quite a serious problem.
+	\item Unfortunately, endogeneity is difficult to fix.
+	Most commonly, we would like to find an instrumental variable, one that is correlated \w\ the endogenous explanatory variable but uncorrelated \w\ the error term.
+	But it may be difficult to find such a variable.
+\end{itemize}
+
+%</Chapter-15>
+\end{document}
