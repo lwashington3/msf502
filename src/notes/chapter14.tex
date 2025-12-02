@@ -46,8 +46,8 @@
 	\item We need to be able to determine whether the relationship implied by the sample correlation coefficient is real or due to chance.
 	\item In other words, we would like to test whether the population correlation coefficient is different from zero:
 	\[ \begin{aligned}
-		H_{0}:& \rho_{xy} = 0\\
-		H_{A}:& \rho_{xy} \neq 0
+		H_{0}&:\ \rho_{xy} = 0\\
+		H_{A}&:\ \rho_{xy} \neq 0
 	\end{aligned} \]
 \end{itemize}
 
@@ -102,7 +102,7 @@
 		\label{eq:sample-regression}
 	\end{equation}
 	where $\hat{y}$ is the estimated response variable, $b_{0}$ is the estimate of $\beta_{0}$, and $b_{1}$ is the estimate of $\beta_{1}$.
-	\item Since the predictions cannot be totally accurate, the difference between the predicted and actual value represents the \emph{residual} $y = y - \hat{y}$.
+	\item Since the predictions cannot be totally accurate, the difference between the predicted and actual value represents the \emph{residual} $e = y - \hat{y}$.
 \end{itemize}
 
 \subsection{The Least Squares Estimates}\label{subsec:the-least-squares-estimates}
@@ -173,7 +173,7 @@
 	\begin{equation}
 		\begin{aligned}
 			SSE &= \sum_{i=1}^{n} e_{i}^{2}\\
-			&= \sum_{i=1}^{n} \left( y_{i} - \hat{y} \right)^{2}
+			&= \sum_{i=1}^{n} \left( y_{i} - \hat{y}_{i} \right)^{2}
 		\end{aligned}
 		\label{eq:sse-2}
 	\end{equation}
@@ -212,7 +212,11 @@
 		\end{aligned}
 		\label{eq:coefficient-of-determination}
 	\end{equation}
-	where $SSE$ is~\eqref{eq:sse-2} and $SST = \sum(y_{i} - \bar{y})^{2}$.
+	where $SSE$ is~\eqref{eq:sse-2} and $SST$ is~\eqref{eq:sst}
+	\begin{equation}
+		SST = \sum(y_{i} - \bar{y})^{2}.
+		\label{eq:sst}
+	\end{equation}
 	\item The $SST$, called the total sum of squares, denotes the total variation in the response variable.
 	\item The $SST$ can be broken down into two components: the variation explained by the regression equation (the regression sum of squares or $SSR$) and the unexplained variation (the error sum of squares or $SSE$).
 \end{itemize}

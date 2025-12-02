@@ -18,7 +18,7 @@
 
 \renewcommand{\title}{MSF 502 - Exam\ \msfexam@title\ Notes}
 
-\LoadClass[title={\title}]{msf502notes}
+\LoadClass[title={\title},abbreviated=true]{msf502notes}
 \renewcommand{\title}{MSF 502 - Exam\ \msfexam@title\ Notes}
 
 \hypersetup{linkcolor=black}

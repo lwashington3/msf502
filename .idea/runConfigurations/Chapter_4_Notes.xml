@@ -1,16 +1,16 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="September 16, 2025" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="Notes">
+  <configuration default="false" name="Chapter 4 Notes" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="Notes">
     <texify>
       <compiler>PDFLATEX</compiler>
       <compiler-path />
       <pdf-viewer>none</pdf-viewer>
-      <require-focus>true</require-focus>
+      <require-focus>false</require-focus>
       <viewer-command>pdfopener</viewer-command>
       <compiler-arguments />
       <envs />
       <expand-macros-in-environment-variables>false</expand-macros-in-environment-variables>
       <before-run-command />
-      <main-file>$PROJECT_DIR$/src/notes/chapter5.tex</main-file>
+      <main-file>$PROJECT_DIR$/src/notes/chapter4.tex</main-file>
       <output-path>$PROJECT_DIR$/out/notes</output-path>
       <auxil-path>$PROJECT_DIR$/auxil/notes</auxil-path>
       <compile-twice>false</compile-twice>

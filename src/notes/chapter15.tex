@@ -99,7 +99,7 @@
 %	\item If the value of the test statistic is less than the critical value, we reject the null hypothesis
 \end{itemize}
 
-\section{Test of Joint Significance}\label{sec:test-of-joint-significance}
+\subsection{Test of Joint Significance}\label{subsec:test-of-joint-significance}
 \lo{Conduct a test of joint significance.}
 \begin{itemize}
 	\item In addition to conducting tests of individual significance, we may also want to test the joint significance of all $k$ variables at once.
@@ -115,13 +115,13 @@
 	\item The test statistic for a test of joint significant is
 	\begin{equation}
 		\begin{aligned}
-			F(df1, df2) &= \frac{MSR}{MSE}\\
+			F_{(df_{1}, df_{2})} &= \frac{MSR}{MSE}\\
 			&= \frac{\frac{SSR}{k}}{\frac{SSE}{n-k-1}}
 		\end{aligned}
 		\label{eq:joint-significance-test-statistic}
 	\end{equation}
 	where $MSR$ and $\hyperref[eq:mse-2]{MSE}$ are the mean regression sum of squares and the mean error sum of squares, respectively.
-	\item The numerator degrees of freedom, $df1=k$, while the denominator degrees of freedom, $df2 = n - k - 1$.
+	\item The numerator degrees of freedom, $df_{1} = k$, while the denominator degrees of freedom, $df_{2} = n - k - 1$.
 \end{itemize}
 
 \section{A General Test of Linear Restrictions}\label{sec:a-general-test-of-linear-restrictions}
@@ -132,8 +132,89 @@
 	\item In this section, we apply the $F$-test for any number of linear restrictions; the resulting $F$-test is often referred to as the \textbf{partial F}-test.
 \end{itemize}
 
+\subsection{Restricted and Unrestricted Models}\label{subsec:restricted-and-unrestricted-models}
+\begin{itemize}
+	\item To conduct the partial $F$-test, we estimate the model \w\ and \wo\ the restrictions.
+	\item In the \emph{restricted model}, we do not estimate the coefficients that are restricted under the null hypothesis.
+	\item The \emph{unrestricted model} is a complete model that imposes no restrictions on the coefficients.
+	\item If restrictions are valid, then the restricted model's error sum of squares, $SSE_{R}$, will not be significantly larger than the unrestricted model's error sum of squares $SSE_{U}$.
+\end{itemize}
+
+\subsection{The Test Statistic}\label{subsec:the-partial-f-test-statistic}
+\begin{itemize}
+	\item The test statistic for a partial $F$-test can be computed as
+	\begin{equation}
+		F_{(df_{1}, df_{2})} = \frac{\frac{SSE_{R} - SSE_{U}}{df_{1}}}{\frac{SSE_{U}}{df_{2}}}
+		\label{eq:partial-f-test}
+	\end{equation}
+	where the numerator degrees of freedom, $df_{1}$, equals the number of restrictions on the model, and the denominator degrees of freedom, $df_{2}$, equals $n - k - 1$.
+	\item If the test statistic is greater than the critical value, then we reject the null hypothesis and the restrictions are not valid.
+\end{itemize}
+
+\subsection{Car Wash Example}\label{subsec:linear-restrictions-example}
+\begin{itemize}
+	\item A manager at a car wash company wants to determine which promotions improve sales.
+	\item He has information on sales, price discounts, and advertising expenditures on Radio and Newspaper in 40 Missouri counties. (Columns = [Country; Sales (in \$1,000s); Discount (in \%); Radio (in \$1,000s); Newspaper (in \$1,000s)])
+	\item More specifically, he would like to test whether either type of advertising impacts sales.
+	To do so, we form the competing hypotheses as:
+	\[ \begin{aligned}
+		H_{0}&:\ \beta_{2} = \beta_{3} = 0\\
+		H_{A}&:\ \text{At least one of the coefficients is nonzero.}
+	\end{aligned} \]
+	\item To conduct the test, we need to estimate a restricted model (R) and an unrestricted model (U):
+	\[ \begin{aligned}
+		\text{(R) Sales} &= \beta_{0} + \beta_{1}\text{Discount} + \epsilon\\
+		\text{(U) Sales} &= \beta_{0} + \beta_{1}\text{Discount} + \beta_{2}\text{Radio} + \beta_{3}\text{Newspaper} + \epsilon
+	\end{aligned} \]
+	\item From the tables (which I'm not adding to this PDF), we can see that $SSE_{U} = 1208.1348$ while the $SSE_{R} = 2182.5649$.
+	We can now proceed to compute the value of the test statistic.
+	\item The number of restrictions, $df_{1}$, equals 2.
+	The unrestricted model has $df_{2} = n - k - 1 = 40 - 3 - 1 = 36$ degrees of freedom.
+	\item We compute the value of the test statistic as:
+	\[ \begin{aligned}
+		F_{2, 36} &= \frac{\frac{2182.5649 - 1208.1348}{2}}{\frac{1208.1348}{36}}\\
+		&= \frac{487.2151}{33.5593}\\
+		&= 14.52\\
+	\end{aligned} \]
+	\item Since $F_{(2, 36)} = 14.52$ is greater than the critical value $F_{0.05, (2, 36)} = 3.26$, we reject the null hypothesis and conclude the restrictions are not valid.
+\end{itemize}
+
 \section{Interval Estimates for Predictions}\label{sec:interval-estimates-for-predictions}
 \lo{Calculate and interpret interval estimates for predictions.}
+\begin{itemize}
+	\item Once we have developed a regression model, we often want to use it to make predictions.
+	\item From the introductory case, what would we predict for a team \w\ an earned run average of 4.00 and a batting average of 0.250?
+	Plugging these values into the estimated equation, we find:
+	\[ \hat{\text{Win}} = 0.13 + 3.28(0.250) - 0.12(4.00) = 0.47 \]
+	\item But this is only a point estimate and ignores sampling error.
+	We could also provide interval estimates.
+\end{itemize}
+
+\subsection{Two Types of Predictions}\label{subsec:two-types-of-predictions}
+\begin{itemize}
+	\item We will develop two types of interval estimates regarding $y$:
+	\begin{enumerate}
+		\item A confidence interval for the \emph{expected} value of $y$
+		\item A prediction interval for an \emph{individual} value of $y$
+	\end{enumerate}
+	\item It is common to refer to the first as a confidence interval and the second as a prediction interval.
+\end{itemize}
+
+\subsection{The Confidence Interval}\label{subsec:the-linear-confidence-interval}
+\begin{itemize}
+	\item The point estimate of $E(y^{0})$ is just the $\hat{y}$ value:
+	\begin{equation}
+		\hat{y}^{0} = b_{0} + b_{1}x_{1}^{0} + b_{2}x_{2}^{0} + \dots + b_{k}x_{K}^{0}
+		\label{eq:linear-point-estimate}
+	\end{equation}
+	\item The confidence interval, as always, includes the point estimate, plus or minus the margin of error:
+	\begin{equation}
+		\hat{y}^{0} \pm t_{\alpha/2, df} se(\hat{y}^{0})
+		\label{eq:point-margin-of-error}
+	\end{equation}
+	\item The term $se(\hat{y}^{0})$ is the standard error of the prediction.
+	Though difficult to compute by hand if there is more than one explanatory variable in the model, we will develop a procedure to compute it \w\ a statistical package.
+\end{itemize}
 
 \section{Model Assumptions and Common Violations}\label{sec:model-assumptions-and-common-violations} % page 37
 \lo{Explain the role of the assumptions on the OLS estimators.}
@@ -147,23 +228,23 @@
 			E(y) = \beta_{0} + \beta_{1}x_{1} + \dots + \beta_{k}x_{k}
 			\label{eq:ols-expected-value}
 		\end{equation}
+		\item There is no exact linear relationship among the $x_{1}, \dots, x_{k}$ values (no perfect \emph{multicollinearity}).
+		\item The variance of the error term $\epsilon$ is the same for all $x_{1}, \dots, x_{k}$ values.
+		We call this \emph{homoskedasticity}.
+		\item The error term $\epsilon$ is uncorrelated across observations, conditional on the explanatory variables.
+		There is no \emph{serial correlation} or \emph{autocorrelation}.
+		\item The error term $\epsilon$ is not correlated \w\ any of the predictors $x_{1}, \dots, x_{k}$,
+		In other words, there is no \emph{endogeneity}.
+		\item The error term $\epsilon$ is normally distributed.
+		This assumption allows us to do hypothesis testing.
+		If normality is not true, the tests may not be valid.
 	\end{enumerate}
-	\item There is no exact linear relationship among the $x_{1}, \dots, x_{k}$ values (no perfect \emph{multicollinearity}).
-	\item The variance of the error term $\epsilon$ is the same for all $x_{1}, \dots, x_{k}$ values.
-	We call this \emph{homoskedasticity}.
-	\item The error term $\epsilon$ is uncorrelated across observations, conditional on the explanatory variables.
-	There is no \emph{serial correlation} or \emph{autocorrelation}.
-	\item The error term $\epsilon$ is not correlated \w\ any of the predictors $x_{1}, \dots, x_{k}$,
-	In other words, there is no \emph{endogeneity}.
-	\item The error term $\epsilon$ is normally distributed.
-	This assumption allows us to do hypothesis testing.
-	If normality is not true, the tests may not be valid.
 \end{itemize}
 
 \subsection{Checking the Assumptions}\label{subsec:checking-the-assumptions}
 \begin{itemize}
 	\item The true error terms $\epsilon$ cannot be observed \bc\ they exist only in the population.
-	We can, however, look at the residuals, $e = y - \hat{y}$, where $\hat{y} = b_{0} + \sum b_{i}x_{i}$, for each observation/
+	We can, however, look at the residuals, $e = y - \hat{y}$, where $\hat{y} = b_{0} + \sum_{i=1}^{k} b_{i}x_{i}$, for each observation.
 	\item It is common to plot to residuals on the vertical axis and an explanatory variable on the horizontal axis.
 	\item When estimating a regression in Excel, the dialog box that opens after choosing \textbf{Data $>$ Data Analysis $>$ Regression} allows us to select \textit{Residuals} and \emph{Residual Plots} options.
 \end{itemize}
@@ -179,7 +260,7 @@
 	\item A sample correlation between explanatory variables that is $>0.80$ or $<-0.80$ suggests severe multicollinearity.
 \end{itemize}
 
-\subsection{Remedying Multicollinearity}\label{subsec:remedying-multicollinearity}
+\subsubsection{Remedying Multicollinearity}\label{subsubsec:remedying-multicollinearity}
 \begin{itemize}
 	\item A good remedy may be simply drop one of the collinear variables if we can justify it as redundant.
 	\item Alternatively, we could try to increase our sample size.
@@ -190,10 +271,10 @@
 \subsection{Common Violation 2: The Error Term is Heteroskedastic}\label{subsec:common-violation-2:-the-error-term-is-heteroskedastic}
 \begin{itemize}
 	\item The variance of the error term changes for different values of at least one explanatory variable.
-	\item Informal residual plots can gauge heteroskedasticity (display a marked pattern).
+	\item Informal residual plots can gauge heteroskedasticity (display a marked pattern, such as increasing magnitude along an axis).
 \end{itemize}
 
-\subsection{Remedying Heteroskedastic}\label{subsec:remedying-heteroskedastic}
+\subsubsection{Remedying Heteroskedastic}\label{subsubsec:remedying-heteroskedastic}
 \begin{itemize}
 	\item Heteroskedastic results in inefficient estimators and the hypothesis tests for significance are no longer valid.
 	\item To get around the second problem, some researchers use OLS estimates along \w\ corrected standard errors, called White's standard errors.
@@ -207,7 +288,7 @@
 	\item Remedies are not easily accessibly using Excel.
 \end{itemize}
 
-\subsubsection{Common Violation 4: The Explanatory Variable is Endogenous}\label{subsubsec:common-violation-4:-the-explanatory-variable-is-endogenous}
+\subsection{Common Violation 4: The Explanatory Variable is Endogenous}\label{subsec:common-violation-4:-the-explanatory-variable-is-endogenous}
 \begin{itemize}
 	\item Endogeneity in the regression model refers to the error term being correlated \w\ the explanatory variables.
 	\item This commonly occurs due to an omitted explanatory variable.

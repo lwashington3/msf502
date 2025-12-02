@@ -16,8 +16,8 @@
 	\item Conduct and evaluate hypothesis tests based on two-way ANOVA \w\ interaction.
 \end{objectives}
 
-\lo{Provide a conceptual overview of ANOVA.}
 \section{One-Way ANOVA}\label{sec:one-way-anova}
+\lo{Provide a conceptual overview of ANOVA.}
 \begin{itemize}
 	\item Analysis of Variance (ANOVA) is used to determine if there are differences among three or more populations.
 	\item One-way ANOVA compares population means based on one categorical variable.
@@ -121,7 +121,7 @@ Here, we compare a total of $c$ populations, rather than just two.
 
 \subsection{The $F$ distribution}\label{subsec:the-$f$-distribution}
 \begin{itemize}
-	\item $F_{(df_{1}, df_{2})}$ distribution is a family of distributions, each one is define by two degrees of freedom parameters, one for the numerator and one for the denominator.
+	\item $F_{(df_{1}, df_{2})}$ distribution is a family of distributions, each one is defined by two degrees of freedom parameters, one for the numerator and one for the denominator.
 	\item More details of $F$ distribution can be found in Chapter 11.
 	\item $F_{\alpha, (df_{1}, df_{2})}$ represents a value such that the area in the right tail of the distribution is $\alpha$.
 	\item With two $df$ parameters, $F$ tables occupy several pages.
@@ -166,7 +166,7 @@ Here, we compare a total of $c$ populations, rather than just two.
 \end{itemize}
 
 \section{Multiple Comparison Methods}\label{sec:multiple-comparison-methods}
-\lo{Use confidence intervals and Tukey's HSD method in order to determine which means differ.}
+\lo{\sout{Use confidence intervals and Tukey's HSD method in order to determine which means differ.}}
 \begin{itemize}
 	\item When the one-way ANOVA finds significant differences between the population means, it is natural to ask which means differ.
 	\item In this section, we show two techniques for performing this follow-up analysis:
@@ -174,11 +174,28 @@ Here, we compare a total of $c$ populations, rather than just two.
 		\item Fisher's Least Difference Method
 		\item Tukey's Honestly Significant Differences Method
 	\end{itemize}
+	\item When comparing two population means, we compute:
+	\begin{equation}
+		\left( \bar{x}_{i} - \bar{x}_{j} \right) \pm t_{\alpha/2,\ n_{i} + n_{j} - 2} \sqrt{s_{p}^{2} \left( \frac{1}{n_{i}} + \frac{1}{n_{j}} \right)}
+		\label{eq:multiple-comparison-methods}
+	\end{equation}
+	where $s_{p}^{2}$ is the pooled sample variance.
+	\item Here, we will improve upon the precision of this estimate by substituting $MSE$ from the ANOVA test for $s_{p}^{2}$.
+\end{itemize}
+
+\subsection{Fisher's Confidence Intervals}\label{subsec:fisher's-confidence-intervals}
+\begin{itemize}
+	\item For comparing population means $\mu_{i}$ and $\mu_{j}$ as a follow-up to the ANOVA test, we can form Fisher's confidence interval:
+	\begin{equation}
+		\left( \bar{x}_{i} - \bar{x}_{j} \right) \pm t_{\alpha/2,\ n_{T} - c} \sqrt{MSE \left( \frac{1}{n_{i}} + \frac{1}{n_{j}} \right)}
+		\label{eq:fishers-confidence-intervals}
+	\end{equation}
+	\item The $t$-distribution has $n_{T} - c$ degrees of freedom regardless of which two means we are comparing.
 \end{itemize}
 
 % Don't worry about pages 23-32, start on page 33
 
-\section{Two-Way ANOVA \w\ Interactions}\label{sec:two-way-anova-w-interactions}
+\section{Two-Way ANOVA (No Interaction)}\label{sec:two-way-anova-no-interaction}
 \lo{Conduct and evaluate hypothesis tests based on two-way ANOVA \w\ no interaction.}
 \begin{itemize}
 	\item We now consider problems where the data are categorized by two factors.
@@ -194,21 +211,21 @@ Here, we compare a total of $c$ populations, rather than just two.
 	\centering
 	\caption{Workers Education Level}
 	\label{tab:}
-	\begin{tabular}{|l|*{4}{r|}}
+	\begin{tabular}{|p{0.175\textwidth}|*{3}{c|}r|}
 		\hline
 		 & \multicolumn{3}{c|}{Field of Employment (Factor A)} & \\
 		\hline
-		Education Level (Factor B) & Educational Services & Financial Services & Medical Services & Factor B Means\\
+		Education Level (Factor B) & Educational Services & Financial Services & Medical Services & \multicolumn{1}{c|}{Factor B Means}\\
 		\hline
-		High School & 18 & 25 & 26 & 23.00\\
+		High School & 18 & 25 & 26 & $\bar{x}_{\text{High School}} = 23.00$\\
 		\hline
-		Bachelor's & 35 & 45 & 43 & 41.00\\
+		Bachelor's & 35 & 45 & 43 & $\bar{x}_{\text{Bachelor's}} = 41.00$\\
 		\hline
-		Master's & 46 & 58 & 62 & 55.33\\
+		Master's & 46 & 58 & 62 & $\bar{x}_{\text{Master's}} = 55.33$\\
 		\hline
-		Ph.D. & 75 & 90 & 110 & 91.67\\
+		Ph.D. & 75 & 90 & 110 & $\bar{x}_{\text{Ph.D.}} = 91.67$\\
 		\hline
-		Factor A Means & 43.50 & 54.50 & 60.25 & 52.75\\
+		Factor A Means & $\bar{x}_{\text{education}} = 43.50$ & $\bar{x}_{\text{financial}} = 54.50$ & $\bar{x}_{\text{medical}} = 60.25$ & $\bar{\bar{x}} = 52.75$\\
 		\hline
 	\end{tabular}
 \end{table}

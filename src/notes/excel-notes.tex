@@ -9,29 +9,41 @@
 		\if#1\empty%
 		#2%
 		\else%
-			\eqref{#1}~\hyperref[#1]{#2}%
+			\autoref{#1}~\hyperref[#1]{#2}%
 		\fi
-	}(#3) -- #4%
+	}(#3) -- #4\\%
 }
 \setlength{\parindent}{0in}
 
-\excel[eq:normal-distribution]{NORM.S.INV}{probability}{returns the inverse of the standard normal cumulative distribution. Finds the $z$-value given a probability.}
-
-\excel{T.INV.2T}{probability, $df$}{Returns the two-tailed inverse of the $t$-distribution. Gets the two-tailed $t$0value for a given probability.}
-
 \excel[eq:sample-variance]{STDEV.S}{$x_{1}$, $x_{2}$, $\dots$}{Sample standard deviation of a population.}
-
-\excel{NORM.S.DIST}{$z$, cumulative=TRUE}{gets the probability given $z$.}
-
-\excel{T.DIST}{$x$, $df$, cumulative=TRUE}{returns the probability for the (left-tailed) $t$-distribution.}
-
-\excel{T.DIST.2T}{$x$, $df$}{returns the probability for the two-tailed $t$-distribution.}
 
 \excel[eq:binomial-probability-distribution]{BINOM.DIST}{\# of successes in trials, \# of trials, probability of success}{returns the individual term binomial distribution probability.}
 
 \excel[eq:possion]{POISSON.DIST}{$x$, mean, cumulative=TRUE}{}
 
+\excel[eq:normal-distribution]{NORM.S.DIST}{$z$, cumulative=TRUE}{gets the probability given $z$.}
+
+\excel[eq:normal-distribution]{NORM.S.INV}{probability}{returns the inverse of the standard normal cumulative distribution. Finds the $z$-value given a probability.}
+
 \excel[eq:exponential-cumulative-distribution]{EXPON.DIST}{$x$, $\lambda$, cumulative=TRUE}{}
+
+\excel[eq:lognormal-pdf]{LOGNORM.DIST}{$x$, $\mu$, $\sigma$, cumulative=TRUE}{Returns the lognormal distribution of $x$, where $\ln(x)$ is normally distributed \w\ parameters $\mu$ and $\sigma$.}
+
+\excel[eq:t-distribution]{T.DIST}{$x$, $df$, cumulative=TRUE}{returns the probability for the (left-tailed) $t$-distribution.}
+
+\excel{T.DIST.2T}{$x$, $df$}{returns the probability for the two-tailed $t$-distribution.}
+
+\excel{T.INV.2T}{probability, $df$}{Returns the two-tailed inverse of the $t$-distribution. Gets the two-tailed $t$-value for a given probability.}
+
+\excel[eq:f-statistic]{F.DIST.RT}{$X$, $df1$, $df2$}{Returns the (right-tailed) $F$-probability distribution.}
+
+\excel[subsec:right-tail-values]{F.INV.RT}{$\alpha$, $df1$, $df2$}{Returns a critical value such that the area in the right tail of the distribution is $\alpha$ (probability).}
+
+\excel[eq:f-left-tail]{F.DIST}{$X$, $df1$, $df2$, cumulative=TRUE}{Returns the (left-tailed) $F$-probability distribution. If cumulative is \texttt{TRUE}, returns the cumulative distribution function; if FALSE, it returns the probability density function.}
+
+\excel[eq:f-left-tail]{F.INV}{$\alpha$, $df1$, $df2$}{Returns a critical value such that the area in the left tail of the distribution is $\alpha$ (probability).}
+
+\excel[eq:sample-covariance]{COVARIANCE.S}{$\text{array}_{1}$, $\text{array}_{2}$}{Calculates the correlation coefficient between two arrays.}
 
 %</Excel-Functions>
 \end{document}

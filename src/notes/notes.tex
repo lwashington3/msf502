@@ -13,12 +13,7 @@
 \let\oldbegindocument\document
 %\let\chaptername\oldchaptername
 \setcounter{chapter}{1}
-\foreach \chap in {2,...,5}{%
-	\ExecuteMetaData[chapter\chap]{Chapter-\chap}
-}
-
-\setcounter{chapter}{6}
-\foreach \chap in {7,...,9}{%
+\foreach \chap in {2,...,9}{%
 	\ExecuteMetaData[chapter\chap]{Chapter-\chap}
 }
 
